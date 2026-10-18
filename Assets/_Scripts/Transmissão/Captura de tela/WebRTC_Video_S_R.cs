@@ -1,0 +1,177 @@
+using GameServer;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.WebRTC;
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.UI;
+
+public class WebRTC_Video_S_R : MonoBehaviour
+{
+    internal static RenderTexture textura;
+    internal static string encoder_Preferido;
+    internal static int encoder_Preferido_ID;
+    internal static List<string> encoders;
+    internal static void Definir_Todos_Ecoders()
+    {
+        var codecs = RTCRtpSender.GetCapabilities(TrackKind.Video).codecs;
+
+        //RTCRtpTransceiver.SetCodecPreferences(codecs);
+        encoders.Clear();
+        foreach (var item in codecs)
+        {
+            if(!encoders.Contains(item.mimeType))
+            encoders.Add(item.mimeType);
+        }
+    }
+    internal static void Escolher_Encoder(string encoder)
+    {
+        encoder_Preferido = encoder;
+        for (int i = 0; i < encoders.Count; i++)
+        {
+            if (encoders[i] == encoder)
+            {
+                encoder_Preferido_ID = i;
+                break;
+            }
+        }
+        Atualizar_Transmissao();
+    }
+    internal static uint? FPS_Target = 15;
+    internal static ulong? BitRate = 2_000_000;
+    internal static double? scaleResolution = 2.0;
+    internal static void Atualizar_Transmissao()
+    {
+        if (Server.Online)
+        {
+            if(Local_Client.instance != null && Local_Client.instance.transmitindo)
+            {
+
+            }
+            else
+            {
+
+            }
+            foreach (var item in Server.clients)
+            {
+                if (item.Value.assistindo)
+                {
+
+                }
+            }
+        }
+        else if(Local_Client.instance != null && Local_Client.instance.webRTC.conec_Tela && Local_Client.instance.transmitindo)
+        {
+            //Atualiza o sender
+            var videoSender = Local_Client.instance.webRTC.peer.GetSenders().First(s => s.Track is VideoStreamTrack);
+            var parameters = videoSender.GetParameters();
+
+            foreach (var encoding in parameters.encodings)
+            {
+                encoding.maxBitrate = BitRate; // 2 Mbps
+                encoding.maxFramerate = FPS_Target;
+                encoding.scaleResolutionDownBy = scaleResolution;
+            }
+
+            var error = videoSender.SetParameters(parameters);
+
+            print("atualizei");
+
+            if (error.errorType != RTCErrorType.None)
+                Debug.LogError($"Erro: {error}");
+        }
+    }
+    public static WebRTC_Video_S_R instance { get; private set; }
+    private void Awake()
+    {
+        instance = this;
+    }
+    internal void Parar()
+    {
+        Parar_Compartilhamento();
+        Parar_Recive();
+    }
+    public void Start_Transmissão()
+    {
+        CriarVideo();
+        if (Server.Online)
+        {
+            Server.Cliente_Escolheu_Tela = true;
+            Server.Iniciar_Transmissão();
+        }
+        else
+        {
+            Send_Client_Packet.Informar_Sore_Tela_Escolhida(true);
+            Local_Client.instance.webRTC.Iniciar_Transmissão();
+        }
+        ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("vou inciar a transmissão"));
+    }
+    public void Parar_Compartilhamento()
+    {
+
+    }
+    void CriarVideo()
+    {
+        intervalo = 1f / (int)FPS_Target;
+        Texture origem = Captura_De_Tela.instance.window.texture;// Get a valid RendertextureFormat
+        var gfxType = SystemInfo.graphicsDeviceType;
+        var format = WebRTC.GetSupportedRenderTextureFormat(gfxType);
+
+        // Cria a RenderTexture
+        textura = new RenderTexture(origem.width, origem.height, 0, format);
+
+        textura.Create();
+
+        //SetVideoCodec(sender);
+        //Check_Actual_Encoder();
+    }
+    private float proximoFrame;
+    private float intervalo;
+    void Update()
+    {
+        if (textura != null && Captura_De_Tela.instance != null && Captura_De_Tela.instance.isValid)
+            if (Time.time > proximoFrame)
+            {
+                proximoFrame = Time.time + intervalo;
+
+                if (Local_Client.instance.ID_Janela_Escolhida.texture_PID != 1234)
+                {
+                    if(Desenho_Na_Tela.instance._Cam_Visial_Essencial != null)
+                    {
+                        ieita.texture = Desenho_Na_Tela.instance._Cam_Visial_Essencial;
+                        Combinar(Captura_De_Tela.instance.window.texture, Desenho_Na_Tela.instance._Cam_Visial_Essencial);
+
+                    }
+                }
+                else
+                    Graphics.Blit(Captura_De_Tela.instance.window.texture, textura);
+            }
+    }
+    public RawImage ieita;
+    RenderTexture resultado_Junção;
+    public Material overlay_Material;
+    void Combinar(Texture A, Texture B)
+    {
+        if(resultado_Junção == null)
+        {
+            var gfxType = SystemInfo.graphicsDeviceType;
+            var format = WebRTC.GetSupportedRenderTextureFormat(gfxType);
+            resultado_Junção = new RenderTexture(A.width, A.height, 0, format);
+        }
+        overlay_Material.SetTexture("_OverlayTex", B);
+
+        Graphics.Blit(A, resultado_Junção, overlay_Material);
+
+        Graphics.Blit(resultado_Junção, textura);
+    }
+    [SerializeField]RawImage img_Recebida;
+    internal void Recive(Texture texture)
+    {
+        img_Recebida.texture = texture;
+    }
+    internal void Parar_Recive()
+    {
+
+    }
+}

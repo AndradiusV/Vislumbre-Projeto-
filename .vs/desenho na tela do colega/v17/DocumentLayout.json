@@ -1,0 +1,478 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\sala_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\sala_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|c:\\users\\enrib\\projetos da unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\captura de tela\\webrtc_video_s_r.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\captura de tela\\webrtc_video_s_r.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\listagem de janelas\\desenho\\desenho_na_tela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\listagem de janelas\\desenho\\desenho_na_tela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|c:\\users\\enrib\\projetos da unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\captura de tela\\overlay.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\captura de tela\\overlay.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\tranparencia\\transparencywindowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\tranparencia\\transparencywindowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\o\u00E7\u00F5es\\opcoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\o\u00E7\u00F5es\\opcoes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\compartilhando_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\compartilhando_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\captura de tela\\captura_de_tela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\captura de tela\\captura_de_tela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\gameserver\\local_client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\gameserver\\local_client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\send_client_packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\send_client_packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\listagem de janelas\\escolhejanela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\listagem de janelas\\escolhejanela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\gameserver\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\gameserver\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\gameserver\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\gameserver\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\recive_from_host.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\recive_from_host.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\recived_from_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\recived_from_clients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\gameserver\\conn_interactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\gameserver\\conn_interactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\send_host_packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\send_host_packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\audiostreaming\\audiocapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\audiostreaming\\audiocapture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\assistindo_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\assistindo_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\o\u00E7\u00F5es\\opcoes_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\o\u00E7\u00F5es\\opcoes_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\listagem de janelas\\desenho\\erasebrush.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\listagem de janelas\\desenho\\erasebrush.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\listagem de janelas\\desenho\\fadetexture.compute||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\listagem de janelas\\desenho\\fadetexture.compute||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\listagem de janelas\\desenho\\paintbrush.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\listagem de janelas\\desenho\\paintbrush.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\mouse dos jogadores\\mouses_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\mouse dos jogadores\\mouses_manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\o\u00E7\u00F5es\\transmissao_op_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\o\u00E7\u00F5es\\transmissao_op_ui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\importados\\connscript\\packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\importados\\connscript\\packet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\transmiss\u00E3o\\mouse dos jogadores\\mouses_enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\transmiss\u00E3o\\mouse dos jogadores\\mouses_enum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\assets\\_scripts\\webrtc\\webrtchost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF064D75-6AAF-FF39-37F9-8013997610B8}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\webrtc\\webrtchost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Overlay.shader",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Overlay.shader",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Overlay.shader",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Overlay.shader",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Overlay.shader",
+              "ViewState": "AgIAACAAAAAAAAAAAAAUwDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2026-10-14T21:21:42.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Opcoes.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-14T15:28:43.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TransparencyWindowController.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\Tranparencia\\TransparencyWindowController.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\Tranparencia\\TransparencyWindowController.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\Tranparencia\\TransparencyWindowController.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\Tranparencia\\TransparencyWindowController.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAAAHEAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-14T15:02:03.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "FadeTexture.compute",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\FadeTexture.compute",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\FadeTexture.compute",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\FadeTexture.compute",
+              "RelativeToolTip": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\FadeTexture.compute",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2026-10-13T21:44:45.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PaintBrush.shader",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\PaintBrush.shader",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\PaintBrush.shader",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\PaintBrush.shader",
+              "RelativeToolTip": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\PaintBrush.shader",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAEQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2026-10-13T21:40:48.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "EraseBrush.shader",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\EraseBrush.shader",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\EraseBrush.shader",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\EraseBrush.shader",
+              "RelativeToolTip": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\EraseBrush.shader",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2026-10-13T21:40:44.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Sala_UI.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Sala_UI.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Sala_UI.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Sala_UI.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Sala_UI.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAmwEcAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T21:36:10.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EscolheJanela.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\EscolheJanela.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Listagem de Janelas\\EscolheJanela.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\EscolheJanela.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Listagem de Janelas\\EscolheJanela.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-13T21:33:45.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Compartilhando_UI.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Compartilhando_UI.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Compartilhando_UI.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Compartilhando_UI.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Compartilhando_UI.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAawDsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-11T00:06:34.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Assistindo_UI.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Assistindo_UI.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Assistindo_UI.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Assistindo_UI.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Assistindo_UI.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAUwCgAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-11T00:03:45.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AudioCapture.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\AudioStreaming\\AudioCapture.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\AudioStreaming\\AudioCapture.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\AudioStreaming\\AudioCapture.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\AudioStreaming\\AudioCapture.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAmwCEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T22:12:27.343Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Packet.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Packet.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\Packet.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Packet.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\Packet.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAhwBoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T20:31:10.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Desenho_Na_Tela.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\Desenho_Na_Tela.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\Desenho_Na_Tela.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Listagem de Janelas\\Desenho\\Desenho_Na_Tela.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Listagem de Janelas\\Desenho\\Desenho_Na_Tela.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAAADQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T20:22:21.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Mouses_Enum.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Enum.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Enum.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Enum.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Enum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T19:35:02.127Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Mouses_Manager.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Manager.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Manager.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Manager.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Mouse Dos jogadores\\Mouses_Manager.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAhwE4AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T19:18:05.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Opcoes_UI.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes_UI.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes_UI.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes_UI.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\O\u00E7\u00F5es\\Opcoes_UI.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAgwB8AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T19:01:15.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Transmissao_OP_UI.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\O\u00E7\u00F5es\\Transmissao_OP_UI.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\O\u00E7\u00F5es\\Transmissao_OP_UI.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\O\u00E7\u00F5es\\Transmissao_OP_UI.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\O\u00E7\u00F5es\\Transmissao_OP_UI.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAswHQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T18:40:52.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Captura_De_Tela.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Captura_De_Tela.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Captura_De_Tela.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Captura_De_Tela.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\Captura_De_Tela.cs",
+              "ViewState": "AgIAAPgAAAAAAAAAAAAhwA8BAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-10T18:18:11.168Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "WebRTCHost.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\WebRTC\\WebRTCHost.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\WebRTC\\WebRTCHost.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\WebRTC\\WebRTCHost.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\WebRTC\\WebRTCHost.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAAswIEAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T21:03:13.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Client.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Client.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Client.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Client.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Client.cs",
+              "ViewState": "AgIAAF8BAAAAAAAAAAAIwGwCAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T16:28:18.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WebRTC_Video_S_R.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\WebRTC_Video_S_R.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\WebRTC_Video_S_R.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\WebRTC_Video_S_R.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Transmiss\u00E3o\\Captura de tela\\WebRTC_Video_S_R.cs",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAAAJkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T02:00:20.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Send_Client_Packet.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Send_Client_Packet.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\Send_Client_Packet.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Send_Client_Packet.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\Send_Client_Packet.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAASwDMAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T16:09:08.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Local_Client.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Local_Client.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Local_Client.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Local_Client.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Local_Client.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAgwKQAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T16:07:35.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Send_Host_Packet.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Send_Host_Packet.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\Send_Host_Packet.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Send_Host_Packet.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\Send_Host_Packet.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAqwJ4AAABhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T16:06:24.189Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Server.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Server.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Server.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Server.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Server.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAwFUAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T00:14:50.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Recive_From_Host.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Recive_From_Host.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\Recive_From_Host.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Recive_From_Host.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\Recive_From_Host.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAuwGYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T00:03:18.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Recived_From_Clients.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Recived_From_Clients.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\Recived_From_Clients.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\Recived_From_Clients.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\Recived_From_Clients.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAuwIoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T20:04:08.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Conn_Interactions.cs",
+              "DocumentMoniker": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Conn_Interactions.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Conn_Interactions.cs",
+              "ToolTip": "C:\\Users\\enrib\\Projetos da Unity\\desenho na tela do colega\\Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Conn_Interactions.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Importados\\ConnScript\\GameServer\\Conn_Interactions.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAADUAAACDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-03T16:18:32.303Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

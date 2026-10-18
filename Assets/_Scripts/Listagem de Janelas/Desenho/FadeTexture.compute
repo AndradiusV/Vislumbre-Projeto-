@@ -1,0 +1,13 @@
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+float reduce_Speed = 0.1;
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    if (Result[id.xy].a == 0)
+        Result[id.xy] = float4(0.0, 0.0, 0.0, 0.0);
+    else
+        Result[id.xy] = float4(Result[id.xy].r, Result[id.xy].g, Result[id.xy].b, clamp(Result[id.xy].a - reduce_Speed,0.,1.));
+}
