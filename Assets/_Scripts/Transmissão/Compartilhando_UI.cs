@@ -96,10 +96,10 @@ public class Compartilhando_UI : MonoBehaviour
         Fechar_OP_CR();
         TransparencyWindowController.instance.RestaurarFocoDaJanela();
     }
-    public void Começar_Balde()
+    public void Começar_ContaGotas()
     {
         TransparencyWindowController.forceClickable = true;
-        Desenho_Na_Tela.instance.Iniciar_Desenho(BrushType.balde);
+        Desenho_Na_Tela.instance.Iniciar_Desenho(BrushType.conta_Gotas);
         aba_Lapis_Borracha_OP.SetActive(false);
         Fechar_OP_CR();
         TransparencyWindowController.instance.RestaurarFocoDaJanela();
@@ -134,11 +134,15 @@ public class Compartilhando_UI : MonoBehaviour
     {
         TransparencyWindowController.forceClickable = false;
         aba_Lapis_Borracha_OP.SetActive(false);
+        Alterar_Info_Geral(false);
+        Desenho_Na_Tela.instance.Para_Desenho();
         #region Desativa toda forma de captura
         Parar_De_Compartilhar();
-        Audio_Trans_Manager.instance.Parar_Capture();
         #endregion
-        Fechar_OP_CR();
         Sala_UI.instance.Abir_Espera();
+    }
+    private void OnEnable()
+    {
+        Alterar_Info_Geral(false);
     }
 }

@@ -13,6 +13,10 @@ public class Audio_Trans_Manager : MonoBehaviour
         instance = this;
     }
     #region Capture
+    internal void Validar()
+    {
+        cap.Validar();
+    }
     internal bool Cap_Ativo() { return cap.Ativado; }
     /// <summary>
     /// Para capturar o audio de todo computador basta apenas passar 1234

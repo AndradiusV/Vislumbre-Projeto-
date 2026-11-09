@@ -22,13 +22,13 @@ public class Selecionador_De_Cor : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            float x = Input.mousePosition.x - _color_Intensity_RT.position.x;
-            float y = Input.mousePosition.y - _color_Intensity_RT.position.y;
+            float x = FunçõesPrecalculadas.mousePositionOnWorld.x - _color_Intensity_RT.position.x;
+            float y = FunçõesPrecalculadas.mousePositionOnWorld.y - _color_Intensity_RT.position.y;
 
-            float x_Amount = x / _color_Intensity_RT.rect.width;
-            float y_Amount = y / _color_Intensity_RT.rect.height;
+            float x_Amount = x / (_color_Intensity_RT.rect.width * FunçõesPrecalculadas.Canvas_Ajust_Size.x);
+            float y_Amount = y / (_color_Intensity_RT.rect.height * FunçõesPrecalculadas.Canvas_Ajust_Size.y);
 
-            if((Mathf.Abs(x_Amount) <= .5f && Mathf.Abs(y_Amount) <= .5f) || mudando_Intencidade)
+            if ((Mathf.Abs(x_Amount) <= .5f && Mathf.Abs(y_Amount) <= .5f) || mudando_Intencidade)
             {
                 mudando_Intencidade = true;
                 Escolher_Intencidade(x_Amount, y_Amount);
@@ -62,28 +62,6 @@ public class Selecionador_De_Cor : MonoBehaviour
 
         Opcoes.SalvarConfiguracoes();
     }
-    public void Escolher_Intencidade()
-    {
-        float x = Input.mousePosition.x - _color_Intensity_RT.position.x;
-        float y = Input.mousePosition.y - _color_Intensity_RT.position.y;
-
-        float x_Amount = x / _color_Intensity_RT.rect.width;
-        float y_Amount = y / _color_Intensity_RT.rect.height;
-
-        x_Amount += .5f;
-        y_Amount += .5f;
-
-        intencidade_Branco = Mathf.Clamp01(x_Amount);
-        intencidade_Preto = Mathf.Clamp01(y_Amount);
-
-        _C_I_Pos_RT.position = new Vector3((intencidade_Branco - .5f) * _color_Intensity_RT.rect.width,
-           (intencidade_Preto - .5f) * _color_Intensity_RT.rect.height, 0)
-            + _color_Intensity_RT.position;
-
-        intencidade_Branco = 1 - Mathf.Clamp01(x_Amount);
-
-        Calcular_Cor_Final();
-    }
     public void Escolher_Intencidade(float x_Amount,float y_Amount)
     {
         x_Amount += .5f;
@@ -93,8 +71,10 @@ public class Selecionador_De_Cor : MonoBehaviour
         intencidade_Preto = Mathf.Clamp01(y_Amount);
 
         _C_I_Pos_RT.position = new Vector3((intencidade_Branco - .5f) * _color_Intensity_RT.rect.width,
-           (intencidade_Preto -.5f) * _color_Intensity_RT.rect.height, 0) 
-            + _color_Intensity_RT.position;
+           (intencidade_Preto - .5f) * _color_Intensity_RT.rect.height, 0);
+        _C_I_Pos_RT.position *= FunçõesPrecalculadas.Canvas_Ajust_Size;
+
+        _C_I_Pos_RT.position += _color_Intensity_RT.position;
 
         intencidade_Branco = 1 - Mathf.Clamp01(x_Amount);
 
@@ -128,14 +108,37 @@ public class Selecionador_De_Cor : MonoBehaviour
 
         float x = (1 - intencidade_Branco);
 
-        _C_I_Pos_RT.position = new Vector3((x - .5f) * _color_Intensity_RT.rect.width,
-           (intencidade_Preto - .5f) * _color_Intensity_RT.rect.height, 0)
-            + _color_Intensity_RT.position;
+        _C_I_Pos_RT.position = new Vector3((intencidade_Branco - .5f) * _color_Intensity_RT.rect.width,
+           (intencidade_Preto - .5f) * _color_Intensity_RT.rect.height, 0);
+        _C_I_Pos_RT.position *= FunçõesPrecalculadas.Canvas_Ajust_Size;
+
+        _C_I_Pos_RT.position += _color_Intensity_RT.position;
 
         _opacidade_SL.SetValueWithoutNotify(opacidade);
 
         Color.RGBToHSV(cor, out float color_valor, out float s, out float v);
 
         _color_Base_SL.SetValueWithoutNotify(color_valor);
+    }
+    internal void Carregar_Cor(Color novaCor)
+    {
+        // Recupera a opacidade
+        Color corAjustada = novaCor.gamma; // Ou novaCor.linear dependendo do Color Space do projeto
+
+        //opacidade = corAjustada.a;
+        opacidade = corAjustada.a;
+
+        // Recupera a cor HSV
+        Color.RGBToHSV(corAjustada, out float h, out float s, out float v);
+
+        // Recupera a cor base, mantendo saturação e matiz
+        cor = Color.HSVToRGB(h, s, 1f);
+
+        // Recupera as intensidades
+        intencidade_Preto = v;
+        intencidade_Branco = 0;
+
+        // Atualiza os parâmetros visuais
+        Carregar_Info();
     }
 }

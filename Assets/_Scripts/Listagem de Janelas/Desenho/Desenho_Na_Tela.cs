@@ -78,28 +78,16 @@ public class Desenho_Na_Tela : MonoBehaviour
         if (width <= 0) width = 640;
         if (height <= 0) height = 480;
         Opcoes.SalvarConfiguracoes();
-        _rt_Fixa = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32);
-
-        _rt_Fixa.useMipMap = false;
-        _rt_Fixa.autoGenerateMips = false;
-        _rt_Fixa.filterMode = FilterMode.Point;
-        _rt_Fixa.wrapMode = TextureWrapMode.Clamp;
-        _rt_Fixa.Create();
 
         // --------------------------------------------------
         // RenderTexture
         // --------------------------------------------------
 
         #region Fixa
-        _rt_Fixa = new RenderTexture(
-            width,
-            height,
-            0,
-            RenderTextureFormat.ARGB32
-        );
+        _rt_Fixa = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32);
 
         _rt_Fixa.enableRandomWrite = true;
-        _rt_Fixa.filterMode = FilterMode.Bilinear;
+        _rt_Fixa.filterMode = FilterMode.Point;
         _rt_Fixa.wrapMode = TextureWrapMode.Clamp;
         _rt_Fixa.useMipMap = false;
         _rt_Fixa.autoGenerateMips = false;
@@ -118,7 +106,7 @@ public class Desenho_Na_Tela : MonoBehaviour
         );
 
         _rt_Temporaria.enableRandomWrite = true;
-        _rt_Temporaria.filterMode = FilterMode.Bilinear;
+        _rt_Temporaria.filterMode = FilterMode.Point;
         _rt_Temporaria.wrapMode = TextureWrapMode.Clamp;
         _rt_Temporaria.useMipMap = false;
         _rt_Temporaria.autoGenerateMips = false;
@@ -262,6 +250,8 @@ public class Desenho_Na_Tela : MonoBehaviour
         }
         else if (brush_Atual == BrushType.borracha)
             Mouses_Manager.meu_Mouse_type = Mouse_Type.borracha;
+        else if (brush_Atual == BrushType.conta_Gotas)
+            Mouses_Manager.meu_Mouse_type = Mouse_Type.conta_Gotas;
     }
     public void Logica_Basica()
     {
@@ -279,12 +269,14 @@ public class Desenho_Na_Tela : MonoBehaviour
                 desenho_Type_Atual = Permissão_De_Desenho.fixo;
         }
 
+        Definir_M_Type_Atual();
+
         desenho_Type_Atual = Filtro_Permi(desenho_Type_Atual);
 
         bool Usou = false;
         Vector2 position = Vector2.zero;
 
-        if (GetCanvasPosition(Input.mousePosition, out position))
+        if (GetCanvasPosition(FunçõesPrecalculadas.mousePositionOnWorld, out position))
         {
             switch (brush_Atual)
             {
@@ -293,12 +285,11 @@ public class Desenho_Na_Tela : MonoBehaviour
                 case BrushType.lapis:
                     Usou = Fluxo_Lapis(position);
                     break;
-                case BrushType.pincel:
-                    break;
                 case BrushType.borracha:
                     Usou = fluxo_Borracha(position);
                     break;
-                case BrushType.balde:
+                case BrushType.conta_Gotas:
+                    Conta_Gotas(position);
                     break;
                 default:
                     break;
@@ -310,6 +301,39 @@ public class Desenho_Na_Tela : MonoBehaviour
                 Local_Client.instance.Envio_Mouse(Mouses_Manager.meu_Mouse_type, BrushType.nada,
                     Permissão_De_Desenho.nenhuma, position, brushColor, brushSize);
     }
+    #region Conta Gotas
+    [SerializeField] Conta_Gotas _conta_Gotas;
+    [SerializeField] Selecionador_De_Cor seletor_De_Cor_Transmissão;
+    [SerializeField] Selecionador_De_Cor seletor_De_Cor_Assistindo;
+    public void Conta_Gotas(Vector2 position)
+    {
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            position /= new Vector2(width, height);
+            position.y = 1 - position.y;
+            if (Local_Client.instance.transmitindo)
+            {
+                position.x *= WebRTC_Video_S_R.textura.width;
+                position.y *= WebRTC_Video_S_R.textura.height;
+                _conta_Gotas.ReadPixel(WebRTC_Video_S_R.textura, (int)position.x, (int)position.y, cor =>
+                {
+                    seletor_De_Cor_Assistindo.Carregar_Cor(cor);
+                    seletor_De_Cor_Transmissão.Carregar_Cor(cor);
+                });
+            }
+            else
+            {
+                position.x *= WebRTC_Video_S_R.instance.img_Recebida.texture.width;
+                position.y *= WebRTC_Video_S_R.instance.img_Recebida.texture.height;
+                _conta_Gotas.ReadPixel(WebRTC_Video_S_R.instance.img_Recebida.texture, (int)position.x, (int)position.y, cor =>
+                {
+                    seletor_De_Cor_Assistindo.Carregar_Cor(cor);
+                    seletor_De_Cor_Transmissão.Carregar_Cor(cor);
+                });
+            }
+        }
+    }
+    #endregion
     #region Lapis
     #region Local
     public bool Fluxo_Lapis(Vector2 position)
@@ -643,6 +667,7 @@ public class Desenho_Na_Tela : MonoBehaviour
 
 
         // 0..canvas resolution
+        //canvasPosition = new Vector2(normalizedX, normalizedY);
         canvasPosition = new Vector2(normalizedX * width, normalizedY * height);
 
         return true;
@@ -673,12 +698,12 @@ public class Desenho_Na_Tela : MonoBehaviour
     {
         Rect r = tela_Fixa_Streamer.rectTransform.rect;
         Vector2 pos_Convertida = pos;
-        print(pos_Convertida);
         pos_Convertida.x /= _rt_Fixa.width;
         pos_Convertida.y /= _rt_Fixa.height;
-        print(pos_Convertida);
-        pos_Convertida.x *= cv.rect.width;
-        pos_Convertida.y *= cv.rect.height;
+        pos_Convertida -= new Vector2(0.5f, 0.5f);
+        pos_Convertida *= FunçõesPrecalculadas.To_Camera_Size;
+        //pos_Convertida.x *= cv.rect.width;
+        //pos_Convertida.y *= cv.rect.height;
 
         Mouses_Manager.instance.Mover_Mouse(client_ID, m_tipo, pos_Convertida, cor);
         if (permi_Desenho == Permissão_De_Desenho.nenhuma || Server.Client_Permi_Desenho_Type == Permissão_De_Desenho.nenhuma)
@@ -693,12 +718,8 @@ public class Desenho_Na_Tela : MonoBehaviour
             case BrushType.lapis:
                 Fluxo_Lapis_Recebido(tipo_Desenho, pos, cor, size);
                 break;
-            case BrushType.pincel:
-                break;
             case BrushType.borracha:
                 Fluxo_Erase_Recebido(tipo_Desenho, pos, size);
-                break;
-            case BrushType.balde:
                 break;
             default:
                 break;

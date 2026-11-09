@@ -17,15 +17,18 @@ internal static class Opcoes
 
         // Criamos um "pacote" vazio com a nossa classe de dados
         config_Atual = new DadosDeConfiguracao();
+        config_Atual.Versão_Da_Build = Application.version;
+        config_Atual.primeira_Vez_entrando = GameManager.Primeira_Vez;
 
         // Aqui você pega as informações do seu jogo e coloca dentro do pacote.
         config_Atual.volume_Geral = AudioListener.volume;
-        config_Atual.volume_Ping = SoundManager.volume;
+        config_Atual.volume_Ping = SoundManager.ping_volume;
         config_Atual.qualidadeGrafica = QualitySettings.GetQualityLevel();
         config_Atual.idioma = "PT-BR";
         config_Atual.resloução_Atual = new Vector2Int(Screen.width, Screen.height);
 
         config_Atual.Avisos = Avisos.avisos;
+        config_Atual.descrições_Discretas = Regiões_ADM.descrições_Discretas;
         config_Atual.is_Pined = TransparencyWindowController.is_Pined;
 
         config_Atual.permite_Desenho = Desenho_Na_Tela.permi_Desenho;
@@ -42,9 +45,10 @@ internal static class Opcoes
 
         config_Atual.prog_Audi_Excluido = Audio_Trans_Manager.prog_Audi_Excluido;
         config_Atual.meu_ip = Local_Client.meu_IP;
-        config_Atual.BitRate = (ulong)WebRTC_Video_S_R.BitRate;
 
+        config_Atual.BitRate = (ulong)WebRTC_Video_S_R.BitRate;
         config_Atual.FPS_Target = (uint)WebRTC_Video_S_R.FPS_Target;
+        config_Atual.scaleResolutionDownBy = (double)WebRTC_Video_S_R.scaleResolutionDownBy;
         config_Atual.encoder_Preferido = WebRTC_Video_S_R.encoder_Preferido;
 
         // =========================================================
@@ -78,11 +82,14 @@ internal static class Opcoes
 
             // Transforma o texto de volta na nossa classe de dados
             config_Atual = JsonUtility.FromJson<DadosDeConfiguracao>(textoJson);
+            config_Atual.Versão_Da_Build = Application.version;
+            GameManager.Primeira_Vez = config_Atual.primeira_Vez_entrando;
 
             // Agora você aplica no jogo!
             AudioListener.volume = config_Atual.volume_Geral;
-            SoundManager.volume = config_Atual.volume_Ping;
+            SoundManager.ping_volume = config_Atual.volume_Ping;
             Avisos.avisos = config_Atual.Avisos;
+            Regiões_ADM.descrições_Discretas = config_Atual.descrições_Discretas;
             TransparencyWindowController.is_Pined = config_Atual.is_Pined;
             QualitySettings.SetQualityLevel(config_Atual.qualidadeGrafica);
 
@@ -100,16 +107,21 @@ internal static class Opcoes
 
             Audio_Trans_Manager.prog_Audi_Excluido = config_Atual.prog_Audi_Excluido;
             Local_Client.meu_IP = config_Atual.meu_ip;
-            WebRTC_Video_S_R.BitRate = config_Atual.BitRate;
 
+            WebRTC_Video_S_R.BitRate = config_Atual.BitRate;
             WebRTC_Video_S_R.FPS_Target = config_Atual.FPS_Target;
-            WebRTC_Video_S_R.encoder_Preferido= config_Atual.encoder_Preferido;
+            WebRTC_Video_S_R.scaleResolutionDownBy = config_Atual.scaleResolutionDownBy;
+            WebRTC_Video_S_R.encoder_Preferido = config_Atual.encoder_Preferido;
 
             WebRTC_Video_S_R.Atualizar_Transmissao();
             Debug.Log("Configurações carregadas com sucesso!");
         }
         else
         {
+            AudioListener.volume = .75f;
+            SoundManager.ping_volume = .5f;
+            Avisos.avisos = false;
+            Desenho_Na_Tela.desenho_tipo_Preferido = Permissão_De_Desenho.todos;
             SalvarConfiguracoes();
             Debug.Log("Arquivo de save não encontrado. O jogo usará as configurações padrão.");
         }
@@ -120,12 +132,15 @@ internal static class Opcoes
 [System.Serializable]
 public class DadosDeConfiguracao
 {
-    public float volume_Geral;
-    public float volume_Ping;
+    public string Versão_Da_Build;
+    public bool primeira_Vez_entrando = true;
+    public float volume_Geral = .75f;
+    public float volume_Ping = .5f;
     public int qualidadeGrafica;
     public string idioma;
     public Vector2Int resloução_Atual;
     public bool Avisos;
+    public bool descrições_Discretas = true;
     public bool is_Pined;
 
     #region Desenho
@@ -148,6 +163,7 @@ public class DadosDeConfiguracao
     public string meu_ip;
     public ulong BitRate = 4_000_000;
     public uint FPS_Target = 30;
+    public double scaleResolutionDownBy = 1;
     public string encoder_Preferido;
     #endregion
 }

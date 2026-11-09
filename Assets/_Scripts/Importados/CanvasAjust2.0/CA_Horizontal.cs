@@ -83,9 +83,9 @@ public class CA_Horizontal : CA_Content
             RefRect.pivot = new Vector2(1, .5f);
         }
         x_size = (activeChildren * RefRect.rect.width * horizontalAmount) 
-            
             + (Mathf.Clamp(activeChildren - 1,0, activeChildren) * RefRect.rect.width * spaceAmount)
             + (RefRect.rect.width * BorderAmoun * 2);
+
         myrect.sizeDelta = new Vector2(x_size, 0);
     }
 
@@ -107,6 +107,11 @@ public class CA_Horizontal : CA_Content
         {
             B_x = activeChildren * horizontalAmount * RefRect.rect.width / 2 + (RefRect.rect.width * BorderAmoun)
                 + Mathf.Clamp(activeChildren - 1, 0, activeChildren) * spaceAmount * RefRect.rect.width / 2;
+
+            if (FunçõesPrecalculadas.Canvas_Ajust_Size != Vector2.zero)
+            {
+                B_x *= FunçõesPrecalculadas.Canvas_Ajust_Size.x;
+            }
         }
         if (UseNormalChild)
         {
@@ -135,6 +140,11 @@ public class CA_Horizontal : CA_Content
                     #region position
 
                     float x = (i * (spaceAmount + horizontalAmount)) * RefRect.rect.width + (RefRect.rect.width * BorderAmoun);
+
+                    if (FunçõesPrecalculadas.Canvas_Ajust_Size != Vector2.zero)
+                    {
+                        x *= FunçõesPrecalculadas.Canvas_Ajust_Size.x;
+                    }
                     if (at == AlingType.A)
                         rc.position = new Vector2(x, 0) + (Vector2)myrect.position;
                     else if (at == AlingType.B)
@@ -173,6 +183,10 @@ public class CA_Horizontal : CA_Content
 
                 float x = (i * (spaceAmount + horizontalAmount)) * RefRect.rect.width + (RefRect.rect.width * BorderAmoun);
 
+                if (FunçõesPrecalculadas.Canvas_Ajust_Size != Vector2.zero)
+                {
+                    x *= FunçõesPrecalculadas.Canvas_Ajust_Size.x;
+                }
                 if (at == AlingType.A)
                     filhos[i].rc.position = new Vector2(x, 0) + (Vector2)myrect.position;
                 else if (at == AlingType.B)

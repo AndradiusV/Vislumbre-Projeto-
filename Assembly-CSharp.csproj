@@ -69,12 +69,14 @@
     <Compile Include="Assets\_Scripts\Importados\CanvasAjust2.0\CA_Horizontal\CA_Vertical.cs" />
     <Compile Include="Assets\_Scripts\Importados\ConnScript\GameServer\ThreadManager.cs" />
     <Compile Include="Assets\_Scripts\Transmissão\Mouse Dos jogadores\Mouses_Manager.cs" />
+    <Compile Include="Assets\_Scripts\Primeira vez\Exclude_Program_Audio_Item_Primeira_Vez.cs" />
     <Compile Include="Assets\uWindowCapture\Samples\RayCast\UwcRayCastExample.cs" />
     <Compile Include="Assets\uWindowCapture\Samples\GetPixels\UwcGetPixelsExample.cs" />
     <Compile Include="Assets\_Scripts\Transmissão\Compartilhando_UI.cs" />
     <Compile Include="Assets\_Scripts\Importados\ConnScript\Send_Host_Packet.cs" />
     <Compile Include="Assets\_Scripts\Importados\CanvasAjust2.0\CA_item.cs" />
     <Compile Include="Assets\uWindowCapture\Samples\Texture Buffer\UwcGetBufferExample.cs" />
+    <Compile Include="Assets\_Scripts\Primeira vez\Primeira_Vez.cs" />
     <Compile Include="Assets\_Scripts\Importados\CanvasAjust2.0\CA_Content.cs" />
     <Compile Include="Assets\_Scripts\Listagem de Janelas\Desenho\Desenho_Na_Tela.cs" />
     <Compile Include="Assets\Scenes\Script_Teste.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Assets\_Scripts\Importados\ConnScript\Recive_From_Host.cs" />
     <Compile Include="Assets\_Scripts\Importados\FunçõesPrecalculadas.cs" />
     <Compile Include="Assets\_Scripts\Transmissão\Captura de tela\Captura_De_Tela.cs" />
+    <Compile Include="Assets\_Scripts\Região\RegiãoClicavel.cs" />
     <Compile Include="Assets\_Scripts\Importados\ConnScript\GameServer\Server.cs" />
     <Compile Include="Assets\_Scripts\Importados\CanvasAjust2.0\CA_Horizontal_Editor.cs" />
     <Compile Include="Assets\_Scripts\Transmissão\Assistindo_UI.cs" />
@@ -93,12 +96,15 @@
     <Compile Include="Assets\_Scripts\Importados\ConnScript\Send_Client_Packet.cs" />
     <Compile Include="Assets\_Scripts\Listagem de Janelas\EscolheJanela.cs" />
     <Compile Include="Assets\uWindowCapture\Samples\Window List\UwcWindowListItem.cs" />
-    <Compile Include="Assets\_Scripts\RegiãoClicavel.cs" />
-    <Compile Include="Assets\_Scripts\Importados\ConnScript\Server_Time_Out_Checker.cs" />
+    <Compile Include="Assets\_Scripts\Primeira vez\Desenho_Config_Simples.cs" />
+    <Compile Include="Assets\_Scripts\Região\Regiões_ADM.cs" />
+    <Compile Include="Assets\_Scripts\Importados\Updater_Call.cs" />
     <Compile Include="Assets\_Scripts\Oções\Opcoes_UI.cs" />
+    <Compile Include="Assets\_Scripts\Listagem de Janelas\Desenho\Conta_Gotas.cs" />
     <Compile Include="Assets\_Scripts\Importados\ConnScript\GameServer\Local_Client.cs" />
     <Compile Include="Assets\_Scripts\Importados\CanvasAjust2.0\CA_Horizontal\CA_Vertical_Editor.cs" />
     <Compile Include="Assets\_Scripts\Oções\Preferencias_OP_UI.cs" />
+    <Compile Include="Assets\_Scripts\Primeira vez\Seletor_Exclude_Program_Audio_Primeira_Vez.cs" />
     <Compile Include="Assets\_Scripts\Importados\ConnScript\Recived_From_Clients.cs" />
     <Compile Include="Assets\_Scripts\Oções\Geral_OP_UI.cs" />
     <Compile Include="Assets\_Scripts\Transmissão\OP_Rapidas_Assistindo.cs" />
@@ -117,6 +123,8 @@
     <Compile Include="Assets\_Scripts\Importados\ConnScript\GameServer\Client.cs" />
     <Compile Include="Assets\_Scripts\Importados\FastDebug.cs" />
     <Compile Include="Assets\_Scripts\Importados\ConnScript\GameServer\Conn_Interactions.cs" />
+    <Compile Include="Assets\_Scripts\Primeira vez\Selecionador_De_Cor_Primeira_Vez.cs" />
+    <Compile Include="Assets\_Scripts\Balangar.cs" />
     <Compile Include="Assets\_Scripts\Transmissão\OP_Rapidas_Compartilhamento.cs" />
     <Compile Include="Assets\uWindowCapture\Samples\New Window\UwcNewWindowExample.cs" />
     <Compile Include="Assets\_Scripts\Importados\CanvasAjust2.0\CA_Horizontal.cs" />
@@ -138,6 +146,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\_Scripts\Transmissão\Captura de tela\Overlay.shader" />
+    <None Include="Assets\_Scripts\Listagem de Janelas\Desenho\ContaGotas.shader" />
     <None Include="Assets\uWindowCapture\Assets\Shaders\UwcUnlit.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -149,7 +158,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\uWindowCapture\Assets\Shaders\UwcTransparent.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\ffmpeg-2026-08-20-git-7d77562d2a-full_build\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\uWindowCapture\Assets\Shaders\UwcCommon.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />

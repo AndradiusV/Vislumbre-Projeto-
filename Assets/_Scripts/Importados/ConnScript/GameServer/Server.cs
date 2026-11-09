@@ -22,7 +22,8 @@ namespace GameServer
         public static int Port { get; private set; }
 
         public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
-        internal static int Cliente_Transmitindo;
+        internal static int Cliente_Transmitindo { get { return _Cliente_Transmitindo; } set { _Cliente_Transmitindo = value; } }
+        internal static int _Cliente_Transmitindo;
         internal static bool Cliente_Escolheu_Tela
         {
             get { return _Cliente_Escolheu_Tela; }
@@ -37,7 +38,13 @@ namespace GameServer
                 }
                 if (Online)
                 {
+                    //Caso o cliente tenha escolhido a tela. Avise a todos
                     Send_Host_Packet.Atualizar_Alguem_Transmitindo(Cliente_Transmitindo, _Cliente_Escolheu_Tela);
+                    if(value && Cliente_Transmitindo >= 0)
+                    {
+                       if (WebRTC_Video_S_R.instance.Atualizar_Recive())
+                            Iniciar_Transmissão();
+                    }
                 }
             }
         }
@@ -61,17 +68,21 @@ namespace GameServer
         private static TcpListener tcpListener;
         private static UdpClient udpListener;
         #region Transmissão de Video
-        internal static uint? FPS_Target = 15;
-        internal static ulong? BitRate = 2_000_000;
-        internal static double? scaleResolution = 2.0;
+        internal static uint? FPS_Target = 60;
+        internal static ulong? BitRate = 5_000_000;
+        internal static double? scaleResolution = 1.0;
         internal static VideoStreamTrack videoTrack;
         internal static void Iniciar_Transmissão()
         {
-            videoTrack = new VideoStreamTrack(WebRTC_Video_S_R.textura);
+            Debug.LogWarning("quem está transmitindo é :" + Cliente_Transmitindo);
+            if(Cliente_Transmitindo == -1)
+                videoTrack = new VideoStreamTrack(WebRTC_Video_S_R.textura);
+            else
+                videoTrack = new VideoStreamTrack(WebRTC_Video_S_R.instance.img_Recebida.texture);
 
             foreach (var item in clients)
             {
-                if(item.Value.assistindo && item.Key != Cliente_Transmitindo && !item.Value.webRTC.conec_Tela)
+                if(item.Value.assistindo && item.Key != Cliente_Transmitindo && item.Value.webRTC.conectado)
                 {
                     item.Value.webRTC.Iniciar_Transmissão();
                 }
@@ -94,6 +105,7 @@ namespace GameServer
         /// <param name="_port"></param>
         public static void Start(int _maxPlayers)
         {
+            Limpar_Info();
             MaxPlayers = _maxPlayers;
             Online = true;
 
@@ -114,7 +126,10 @@ namespace GameServer
         }
         public static void Fechar_Servidor()
         {
+            //WebRTC_Video_S_R.instance.Parar();
+
             Online = false;
+            Limpar_Info();
             Local_Client.Conectado = false;
             //Ordena todos os clientes se desconectarem ou escolherem um novo Host, ainda preciso decidir
             foreach (var cl in clients)
@@ -126,6 +141,16 @@ namespace GameServer
             tcpListener.Stop();
             udpListener.Close();
             udpListener.Dispose();
+
+        }
+        internal static void Limpar_Info()
+        {
+            Port = 0;
+            _Cliente_Escolheu_Tela = false;
+            _Cliente_Permite_Desenho = Permissão_De_Desenho.nenhuma;
+            _Cliente_Transmitindo = -2;
+            Desenho_width = 0;
+            Desenho_height = 0;
         }
 
         /// <summary>
@@ -174,6 +199,14 @@ namespace GameServer
                 if (_data.Length < 4)
                 {
                     // TODO: disconnect
+                    foreach (var item in clients)
+                    {
+                        if(item.Value.udp.endPoint == _clientEndPoint)
+                        {
+                            ThreadManager.ExecuteOnMainThread(item.Value.Disconect);
+                            break;
+                        }
+                    }
                     return;
                 }
 
@@ -199,6 +232,11 @@ namespace GameServer
                     clients[_clientId].udp.HandleData(_data);
                 }
 
+                //Essa parte é uma versão antiga para o UDP, ele não suporta grandes pacotes por consumir muito processamento
+                //Por causa disso decidi parar de usar aqui e passei a tratar o bytes brutos direto para o que serão usados
+                //Note que este Packet funciona muito bem para pacotes pequenos já que de forma geral o seu problema é reconstruir a
+                //arrey de bytes e ir repartindo ela com instruções internas.
+                #region Modelo antigo de leitura dos dados
                 //using (Packet _packet = new Packet(_data))
                 //{
                 //    int _clientId = _packet.ReadInt();
@@ -219,11 +257,21 @@ namespace GameServer
                 //        clients[_clientId].udp.HandleData(_packet);
                 //    }
                 //}
+                #endregion
             }
             catch (Exception _ex)
             {
-                Debug.Log($"Error receiving UDP data: {_ex}");
+                Debug.LogError($"Error receiving UDP data: {_ex}");
                 // TODO: disconnect
+                IPEndPoint _clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
+                foreach (var item in clients)
+                {
+                    if (item.Value.udp.endPoint == _clientEndPoint)
+                    {
+                        ThreadManager.ExecuteOnMainThread(item.Value.Disconect);
+                        break;
+                    }
+                }
             }
         }
         public static void SendUDPData(IPEndPoint _clientEndPoint, Packet _packet)
@@ -269,5 +317,6 @@ namespace GameServer
                 clients.Add(i, new Client(i));
             }
         }
+
     }
 }

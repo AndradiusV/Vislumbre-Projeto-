@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class WebRTC_Video_S_R : MonoBehaviour
 {
     internal static RenderTexture textura;
+    internal static Texture textura_Recebida;
     internal static string encoder_Preferido;
     internal static int encoder_Preferido_ID;
     internal static List<string> encoders;
@@ -40,24 +41,34 @@ public class WebRTC_Video_S_R : MonoBehaviour
     }
     internal static uint? FPS_Target = 15;
     internal static ulong? BitRate = 2_000_000;
-    internal static double? scaleResolution = 2.0;
+    internal static double? scaleResolutionDownBy = 2.0;
     internal static void Atualizar_Transmissao()
     {
+        if(instance != null)
+            instance.intervalo = 1f / (int)FPS_Target;
         if (Server.Online)
         {
-            if(Local_Client.instance != null && Local_Client.instance.transmitindo)
-            {
-
-            }
-            else
-            {
-
-            }
             foreach (var item in Server.clients)
             {
                 if (item.Value.assistindo)
                 {
+                    var parameters = item.Value.webRTC.sender.GetParameters();
 
+                    foreach (var encoding in parameters.encodings)
+                    {
+                        encoding.maxBitrate = BitRate;
+                        encoding.maxFramerate = FPS_Target;
+                        encoding.scaleResolutionDownBy = scaleResolutionDownBy;
+                    }
+
+                    var op = item.Value.webRTC.sender.SetParameters(parameters);
+
+                    if (op.errorType != RTCErrorType.None)
+                    {
+                        Debug.LogError($"Erro ao configurar Sender: {op.message}");
+                        continue;
+                    }
+                    Debug.Log("Sender configurado com sucesso!");
                 }
             }
         }
@@ -71,7 +82,7 @@ public class WebRTC_Video_S_R : MonoBehaviour
             {
                 encoding.maxBitrate = BitRate; // 2 Mbps
                 encoding.maxFramerate = FPS_Target;
-                encoding.scaleResolutionDownBy = scaleResolution;
+                encoding.scaleResolutionDownBy = scaleResolutionDownBy;
             }
 
             var error = videoSender.SetParameters(parameters);
@@ -109,7 +120,25 @@ public class WebRTC_Video_S_R : MonoBehaviour
     }
     public void Parar_Compartilhamento()
     {
-
+        if (Server.Online)
+        {
+            if(Server.Cliente_Transmitindo == -1)
+            {
+                Mouses_Manager.instance.Limpar_Mouses();
+                Audio_Trans_Manager.instance.Parar_Capture();
+                Server.Cliente_Escolheu_Tela = false;
+                foreach (var item in Server.clients)
+                {
+                    Server.Cliente_Parou_Assistir(item.Key);
+                }
+            }
+        }
+        else
+        {
+            Mouses_Manager.instance.Limpar_Mouses();
+            Audio_Trans_Manager.instance.Parar_Capture();
+            Local_Client.instance.webRTC.Parar_Transmissão();
+        }
     }
     void CriarVideo()
     {
@@ -120,11 +149,9 @@ public class WebRTC_Video_S_R : MonoBehaviour
 
         // Cria a RenderTexture
         textura = new RenderTexture(origem.width, origem.height, 0, format);
+        textura.filterMode = FilterMode.Point;
 
         textura.Create();
-
-        //SetVideoCodec(sender);
-        //Check_Actual_Encoder();
     }
     private float proximoFrame;
     private float intervalo;
@@ -135,6 +162,7 @@ public class WebRTC_Video_S_R : MonoBehaviour
             {
                 proximoFrame = Time.time + intervalo;
 
+                //Processo para combinar a textura da tela da janela com a textura de desenho
                 if (Local_Client.instance.ID_Janela_Escolhida.texture_PID != 1234)
                 {
                     if(Desenho_Na_Tela.instance._Cam_Visial_Essencial != null)
@@ -144,7 +172,7 @@ public class WebRTC_Video_S_R : MonoBehaviour
 
                     }
                 }
-                else
+                else //Apenas atualiza a textura para ser enviada
                     Graphics.Blit(Captura_De_Tela.instance.window.texture, textura);
             }
     }
@@ -165,13 +193,26 @@ public class WebRTC_Video_S_R : MonoBehaviour
 
         Graphics.Blit(resultado_Junção, textura);
     }
-    [SerializeField]RawImage img_Recebida;
+    public RawImage img_Recebida;
+    internal bool Atualizar_Recive()
+    {
+        if(Server.clients[Server.Cliente_Transmitindo].webRTC.textura_Do_Cliente != null)
+        {
+            textura_Recebida = Server.clients[Server.Cliente_Transmitindo].webRTC.textura_Do_Cliente;
+            img_Recebida.texture = textura_Recebida;
+            return true;
+        }
+        return false;
+    }
     internal void Recive(Texture texture)
     {
+        textura_Recebida = texture;
         img_Recebida.texture = texture;
+        if (Server.Online)
+            Server.Iniciar_Transmissão();
     }
     internal void Parar_Recive()
     {
-
+        Audio_Trans_Manager.instance.Parar_Reciver();
     }
 }

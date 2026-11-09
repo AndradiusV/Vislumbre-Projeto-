@@ -28,7 +28,7 @@ public class Opcoes_UI : MonoBehaviour
         aba_Preferencias.SetActive(false);
 
         G_OP_UI.Carregar_Volume_Geral(AudioListener.volume);
-        G_OP_UI.Carregar_Volume_Ping(SoundManager.volume);
+        G_OP_UI.Carregar_Volume_Ping(SoundManager.ping_volume);
         G_OP_UI.Carregar_Avisos(Avisos.avisos);
     }
     public void Abrir_Trans()
@@ -48,6 +48,9 @@ public class Opcoes_UI : MonoBehaviour
         aba_Trans.SetActive(false);
         aba_Preferencias.SetActive(true);
         P_OP_UI.Carregar_Perite_Desenho();
+        P_OP_UI.Carregar_Desenho_Preferido();
+        P_OP_UI.Carregar_Descrições();
+        P_OP_UI.Carregar_Pined();
     }
 
     #region Geral

@@ -2,9 +2,8 @@ public enum BrushType
 {
     nada,
     lapis,
-    pincel,
     borracha,
-    balde
+    conta_Gotas
 }
 public enum Permissão_De_Desenho
 {

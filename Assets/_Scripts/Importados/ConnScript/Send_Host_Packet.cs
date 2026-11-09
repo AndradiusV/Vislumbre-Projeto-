@@ -126,7 +126,7 @@ public class Send_Host_Packet : MonoBehaviour
     }
     public static void atualizar_Novo_Cliente_Assistindo(int _client_Sender, bool assistindo)
     {
-        using (Packet _packet = new Packet((int)ServerPackets.atualizar_Permi_Desenho))
+        using (Packet _packet = new Packet((int)ServerPackets.atualizar_Novo_Cliente_Assistindo))
         {
             _packet.Write(_client_Sender);
             _packet.Write(assistindo);
@@ -213,7 +213,7 @@ public class Send_Host_Packet : MonoBehaviour
             _packet.Write(cor);
             _packet.Write(size);
 
-            if (Server.Cliente_Transmitindo != -1)
+            if (Server.Cliente_Transmitindo >= 0)
                 SendUDPData(Server.Cliente_Transmitindo, _packet);
         }
     }

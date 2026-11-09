@@ -1,10 +1,10 @@
 using System;
-using System.Buffers.Binary;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using TMPro;
 using Unity.WebRTC;
 using UnityEngine;
 
@@ -33,6 +33,10 @@ namespace GameServer
         /// </summary>
         public int port = 0;
         /// <summary>
+        /// Este é o IP:Port Que deve ser redistribuido para que outros entrem na sua sala
+        /// </summary>
+        public static string IP_PORT => Server.Online ? (meu_IP + ":" + Server.Port) : (instance.ip + ":" + instance.port);
+        /// <summary>
         /// Seu ID no servidor
         /// </summary>
         public int myId = -1;
@@ -48,7 +52,13 @@ namespace GameServer
         /// Este WebRTC é exclusivo para parte de transmissão de video
         /// </summary>
         public WebRTC_Local webRTC;
-
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Server.clients[0].webRTC.Coisar();
+            }
+        }
 
         private void Awake()
         {
@@ -70,21 +80,58 @@ namespace GameServer
             webRTC = new WebRTC_Local();
         }
         #region Sobre conexão
+        [SerializeField] GameObject _con_aviso_GO;
+        TimerToken _TK_conectando_Aviso;
+        [SerializeField] TextMeshProUGUI _con_Aviso_TXT;
         public void ConnectToServer()
         {
+            Aviso_Sobre_conexão();
             webRTC.CriarPeer();
             Conn_Interactions.InitializeServerData();
             tcp.Connect();
         }
+        void Aviso_Sobre_conexão()
+        {
+            _con_aviso_GO.SetActive(true);
+            //Abre a janela de "estou conectando
+            if (_TK_conectando_Aviso != null)
+                _TK_conectando_Aviso.Dispose();
+
+            _TK_conectando_Aviso = Timer.AdicionarToken(30, () =>
+            {
+
+            }, t =>
+            {
+                int atual = (int)(t % 4);
+                string pontos = ".";
+                string mensagem_Final = "Conectando";
+                for (int i = 0; i < atual; i++)
+                {
+                    mensagem_Final += pontos;
+                }
+                _con_Aviso_TXT.text = mensagem_Final;
+            },
+            () => {
+                _con_aviso_GO.SetActive(false);
+            });
+        }
         public void Disconnect()
         {
+            if (!Conectado)
+                return;
+
+            Server.Limpar_Info();
+            Sala_UI.instance.Abir_Espera();
+            Menu_Inicial_UI.instance.abrir_Menu_Inicial();
+            Conectado = false;
             tcp.Disconect();
             udp.Disconect();
-            Conectado = false;
+            webRTC.EncerrarConexao();
         }
         #region Status
         bool tela_Interia;
-        public bool transmitindo;
+        public bool transmitindo { get { return _transmitindo; } set { _transmitindo = value; } }
+        bool _transmitindo;
         internal Complet_Screen_ID ID_Janela_Escolhida;
         public bool assistindo;
         #endregion
@@ -234,7 +281,7 @@ namespace GameServer
             else
                 Send_Client_Packet.Pedir_Para_Ver_Tela(intenção);
         }
-        public void Envio_Mouse(Mouse_Type mouse_Type,BrushType tipo,Permissão_De_Desenho Tipo_Desenho, Vector2 pos, Color cor, float size)
+        public void Envio_Mouse(Mouse_Type mouse_Type, BrushType tipo, Permissão_De_Desenho Tipo_Desenho, Vector2 pos, Color cor, float size)
         {
             if (Server.Online)
             {
@@ -249,8 +296,6 @@ namespace GameServer
         }
         #endregion
         #endregion
-
-
 
 
         public class TCP
@@ -270,6 +315,8 @@ namespace GameServer
                 };
 
                 receiveBuffer = new byte[dataBufferSize];
+                print(instance.ip);
+                print(instance.port);
                 socket.BeginConnect(instance.ip, instance.port, ConnectCallback, socket);
             }
             public void Disconect()
@@ -300,14 +347,19 @@ namespace GameServer
 
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
 
-                    ThreadManager.ExecuteOnMainThread(Menu_Inicial_UI.instance.abrir_Sala);
 
+                    ThreadManager.ExecuteOnMainThread(Menu_Inicial_UI.instance.abrir_Sala);
+                    ThreadManager.ExecuteOnMainThread(() => {
+                        if (instance._TK_conectando_Aviso != null)
+                            instance._TK_conectando_Aviso.Dispose(); });
                 }
                 catch (Exception e)
                 {
+                    ThreadManager.ExecuteOnMainThread(() =>{
+                        if (instance._TK_conectando_Aviso != null)
+                            instance._TK_conectando_Aviso.Dispose();});
                     Debug.LogError($"Erro ao conectar: {e}");
                 }
-
             }
 
             public void SendData(Packet _packet)
@@ -333,7 +385,7 @@ namespace GameServer
                     if (_byteLength <= 0)
                     {
                         // TODO: disconnect
-                        instance.Disconnect();
+                        ThreadManager.ExecuteOnMainThread(instance.Disconnect);
                         return;
                     }
 
@@ -346,7 +398,7 @@ namespace GameServer
                 catch
                 {
                     // TODO: disconnect
-                    instance.Disconnect();
+                    ThreadManager.ExecuteOnMainThread(instance.Disconnect);
                 }
             }
             private bool HandleData(byte[] _data)
@@ -400,11 +452,6 @@ namespace GameServer
         {
             public UdpClient socket;
             public IPEndPoint endPoint;
-
-            public UDP()
-            {
-                endPoint = new IPEndPoint(IPAddress.Parse(instance.ip), instance.port);
-            }
 
             public void Connect(int _localPort)
             {
@@ -473,7 +520,7 @@ namespace GameServer
                     if (_data.Length < 4)
                     {
                         // TODO: disconnect
-                        instance.Disconnect();
+                        ThreadManager.ExecuteOnMainThread(instance.Disconnect);
                         return;
                     }
 
@@ -483,7 +530,7 @@ namespace GameServer
                 {
                     // TODO: disconnect
                     Debug.LogError(e);
-                    instance.Disconnect();
+                    ThreadManager.ExecuteOnMainThread(instance.Disconnect);
                 }
             }
 
@@ -504,25 +551,45 @@ namespace GameServer
         {
             internal RTCPeerConnection peer;
             private RTCDataChannel dataChannel;
-            internal bool conectado => candidates && offer_Recebida && _conectado;
+            internal bool conectado => candidates && _conectado;
             bool candidates;
-            bool offer_Recebida;
+            //bool offer_Recebida;
             bool _conectado;
             internal bool conec_Tela;
+            internal void Coisar()
+            {
+                Debug.Log($"Senders: {peer.GetSenders().Count()}");
+                Debug.Log($"Receivers: {peer.GetReceivers().Count()}");
+                Debug.Log($"Transceivers: {peer.GetTransceivers().Count()}");
+
+                foreach (var t in peer.GetTransceivers())
+                {
+                    Debug.Log(
+                        $"MID: {t.Mid} | " +
+                        $"Direction: {t.Direction} | " +
+                        $"CurrentDirection: {t.CurrentDirection} | " +
+                        $"Kind: {t.Receiver.Track?.Kind}"
+                    );
+                }
+            }
             internal void CriarPeer()
             {
-                RTCConfiguration config =
-                    new RTCConfiguration();
-
+                RTCConfiguration config = new RTCConfiguration();
                 peer = new RTCPeerConnection(ref config);
+
+                // Garante transceiver bidirecional compatível com B
+                var transceiver = peer.AddTransceiver(
+                    TrackKind.Video,
+                    new RTCRtpTransceiverInit
+                    {
+                        direction = RTCRtpTransceiverDirection.SendRecv
+                    }
+                );
+                sender = transceiver.Sender;
 
                 peer.OnIceCandidate = candidate =>
                 {
-                    if (candidate == null)
-                        return;
-                    ThreadManager.ExecuteOnMainThread(
-                        () => Avisos.instance.Mostrar_Aviso("Canditado achado"));
-
+                    if (candidate == null) return;
                     Enviar(new SignalMessage
                     {
                         type = "ice",
@@ -531,78 +598,66 @@ namespace GameServer
                         sdpMLineIndex = candidate.SdpMLineIndex
                     });
                 };
+
                 peer.OnIceGatheringStateChange = state =>
                 {
-                    if (state == RTCIceGatheringState.Complete){
+                    if (state == RTCIceGatheringState.Complete)
+                    {
                         candidates = true;
                         ThreadManager.ExecuteOnMainThread(() => Sala_UI.instance.Trans_BT_Control());
                     }
-                    ThreadManager.ExecuteOnMainThread(
-                        () => Avisos.instance.Mostrar_Aviso("ice status change:" + state));
                 };
 
                 peer.OnConnectionStateChange = state =>
                 {
-                    ThreadManager.ExecuteOnMainThread(
-                        () => Avisos.instance.Mostrar_Aviso("Status tá mudando: " + state));
                     if (state == RTCPeerConnectionState.Connected)
                     {
                         _conectado = true;
                         ThreadManager.ExecuteOnMainThread(() => Sala_UI.instance.Trans_BT_Control());
-                        ThreadManager.ExecuteOnMainThread(
-                            () => Avisos.instance.Mostrar_Aviso("Conexão com o WEBRTC estabelecida com sucesso!"));
                     }
                     else if (state == RTCPeerConnectionState.Disconnected || state == RTCPeerConnectionState.Failed)
                     {
-                        ThreadManager.ExecuteOnMainThread(
-                            () => Avisos.instance.Mostrar_Aviso("Conexão com o WEBRTC desfeita!"));
                         candidates = false;
-                        offer_Recebida = false;
+                        //offer_Recebida = false;
                         _conectado = false;
-                        ThreadManager.ExecuteOnMainThread(() => Sala_UI.instance.Trans_BT_Control());
                     }
                 };
 
                 peer.OnTrack = e =>
                 {
-                    Debug.Log("TRACK RECEBIDA!");
-
                     if (e.Track is VideoStreamTrack videoTrack)
                     {
-                        Debug.Log("VIDEO TRACK RECEBIDA!");
-
                         videoTrack.OnVideoReceived += texture =>
                         {
-                            Debug.Log($"FRAME RECEBIDO: {texture.width}x{texture.height}");
-
                             WebRTC_Video_S_R.instance.Recive(texture);
                             conec_Tela = true;
                         };
                     }
                 };
+
                 peer.OnDataChannel = channel =>
                 {
                     dataChannel = channel;
 
                     dataChannel.OnOpen = () =>
                     {
-                        ThreadManager.ExecuteOnMainThread(
-                            () => Avisos.instance.Mostrar_Aviso("DATA CHANNEL ABERTO!"));
+                        //ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("DATA CHANNEL ABERTO!"));
                     };
 
                     dataChannel.OnMessage = data =>
                     {
-                        ThreadManager.ExecuteOnMainThread(
-                            () => Avisos.instance.Mostrar_Aviso("Recebi: " +
-                            Encoding.UTF8.GetString(data)));
+                        //ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("Recebi: " + Encoding.UTF8.GetString(data)));
                     };
                 };
             }
 
             internal IEnumerator CriarOffer()
             {
-                ThreadManager.ExecuteOnMainThread(
-                    () => Avisos.instance.Mostrar_Aviso("Criei offer"));
+                if (peer == null)
+                {
+                    Debug.LogError("Peer não foi criado!");
+                    yield break;
+                }
                 var op = peer.CreateOffer();
 
                 yield return op;
@@ -641,79 +696,25 @@ namespace GameServer
                 yield return op;
 
                 //FAZ ALGO.
-                if(op.IsError)
+                if (op.IsError)
                 {
-                    Debug.LogError(op.Error);
+                    Debug.LogError(
+                        $"RTC ERROR:\n" +
+                        $"Type: {op.Error.errorType}\n" +
+                        $"Message: {op.Error.message}\n" +
+                        $"SignalingState: {peer.SignalingState}\n" +
+                        $"ConnectionState: {peer.ConnectionState}"
+                    );
                     yield break;
                 }
 
                 conec_Tela = true;
-                ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("Recebi uma resposta!"));
+                //ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("Recebi uma resposta!"));
             }
-            IEnumerator ReceberOffer(string sdp)
-            {
-                RTCSessionDescription offer =
-                    new RTCSessionDescription
-                    {
-                        type = RTCSdpType.Offer,
-                        sdp = sdp
-                    };
-
-                var remote = peer.SetRemoteDescription(
-                    ref offer
-                );
-
-                ThreadManager.ExecuteOnMainThread(
-                    () => Avisos.instance.Mostrar_Aviso("Iniciei o receber offer"));
-                yield return remote;
-
-                if (remote.IsError)
-                {
-                    Debug.LogError(remote.Error);
-                    yield break;
-                }
-
-                var op = peer.CreateAnswer();
-
-
-                ThreadManager.ExecuteOnMainThread(
-                    () => Avisos.instance.Mostrar_Aviso("Fiz a resposta"));
-                yield return op;
-
-                if (op.IsError)
-                {
-                    Debug.LogError(op.Error);
-                    yield break;
-                }
-
-                var answer = op.Desc;
-
-                var local = peer.SetLocalDescription(ref answer);
-
-                ThreadManager.ExecuteOnMainThread(
-                    () => Avisos.instance.Mostrar_Aviso("fiz o local"));
-                yield return local;
-
-                offer_Recebida = true;
-
-                ThreadManager.ExecuteOnMainThread(() => Sala_UI.instance.Trans_BT_Control());
-
-                ThreadManager.ExecuteOnMainThread(
-                    () => Avisos.instance.Mostrar_Aviso("Antes de enviar a resposta"));
-                Enviar(new SignalMessage
-                {
-                    type = "answer",
-                    sdp = answer.sdp
-                });
-
-                ThreadManager.ExecuteOnMainThread(
-                    () => Avisos.instance.Mostrar_Aviso("Enviei a resposta"));
-            }
-
             void AdicionarIce(SignalMessage msg)
             {
-                ThreadManager.ExecuteOnMainThread(
-                    () => Avisos.instance.Mostrar_Aviso("Adicionei o ICE"));
+                //ThreadManager.ExecuteOnMainThread(
+                //    () => Avisos.instance.Mostrar_Aviso("Adicionei o ICE"));
                 RTCIceCandidateInit init =
                     new RTCIceCandidateInit
                     {
@@ -730,8 +731,8 @@ namespace GameServer
             #region Envio e Recebimento de Mensagens
             void Enviar(SignalMessage msg)
             {
-                ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso(msg.type));
-                ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("Enviei mensagem"));
+                //ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso(msg.type));
+                //ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("Enviei mensagem"));
                 string json = JsonUtility.ToJson(msg) + "\n";
 
                 byte[] data = Encoding.UTF8.GetBytes(json);
@@ -764,13 +765,14 @@ namespace GameServer
             }
             void Processar(string json)
             {
-                Avisos.instance.Mostrar_Aviso(json);
+                //Avisos.instance.Mostrar_Aviso(json);
                 SignalMessage msg = JsonUtility.FromJson<SignalMessage>(json);
 
                 if (msg.type == "offer")
                 {
-                    Avisos.instance.Mostrar_Aviso("Foi uma offer");
-                    instance.StartCoroutine(ReceberOffer(msg.sdp));
+                    Debug.LogError("Os clientes não deveriam receber offers, apenas enviar. Algo está errado.");
+                    //Avisos.instance.Mostrar_Aviso("Foi uma offer");
+                    //instance.StartCoroutine(ReceberOffer(msg.sdp));
                 }
                 else if (msg.type == "answer")
                 {
@@ -788,35 +790,120 @@ namespace GameServer
             internal RTCRtpSender sender;
             internal void Iniciar_Transmissão()
             {
-                //// Add the track.
-                //peerConnection.AddTrack(track);
-
-                //// Create the SDP.
-                //RTCAnswerOptions options = default;
-                //var op = pc.CreateAnswer(ref options);
-                //yield return op;
-
-
                 videoTrack = new VideoStreamTrack(WebRTC_Video_S_R.textura);
-                if(sender != null)
+                if (sender != null)
                 {
-                    peer.RemoveTrack(sender);
-                    sender.Dispose();
-                }
-                sender = peer.AddTrack(videoTrack);
+                    if (sender.ReplaceTrack(videoTrack))
+                        print("consegui fazer meu coiso");
+                    var parameters = sender.GetParameters();
+                    foreach (var encoding in parameters.encodings)
+                    {
+                        encoding.maxBitrate = WebRTC_Video_S_R.BitRate;
+                        encoding.maxFramerate = WebRTC_Video_S_R.FPS_Target;
+                        encoding.scaleResolutionDownBy = WebRTC_Video_S_R.scaleResolutionDownBy;
+                    }
 
+                    RTCError erro = sender.SetParameters(parameters);
+
+                    if (erro.errorType != RTCErrorType.None)
+                    {
+                        Debug.LogError($"ERRO AO CONFIGURAR SENDER: {erro.message}");
+                    }
+                    else
+                    {
+                        Debug.Log("Parâmetros do sender configurados com sucesso!");
+                    }
+                }
+                else
+                {
+                    sender = peer.AddTrack(videoTrack);
+
+                    var parameters = sender.GetParameters();
+                    foreach (var encoding in parameters.encodings)
+                    {
+                        encoding.maxBitrate = WebRTC_Video_S_R.BitRate;
+                        encoding.maxFramerate = WebRTC_Video_S_R.FPS_Target;
+                        encoding.scaleResolutionDownBy = WebRTC_Video_S_R.scaleResolutionDownBy;
+                    }
+
+                    RTCError erro = sender.SetParameters(parameters);
+
+                    if (erro.errorType != RTCErrorType.None)
+                    {
+                        Debug.LogError($"ERRO AO CONFIGURAR SENDER: {erro.message}");
+                    }
+                    else
+                    {
+                        Debug.Log("Parâmetros do sender configurados com sucesso!");
+                    }
+
+                    ThreadManager.ExecuteOnMainThread(() => instance.StartCoroutine(CriarOffer()));
+                }
+            }
+            /// <summary>
+            /// Para o envio de vídeo, removendo o track do sender e liberando a memória.
+            /// Apenas os clientes conectados no servidor devem chamar está função
+            /// </summary>
+            internal void Parar_Transmissão()
+            {
+                if (sender == null)
+                    Debug.Log("Não há sender para parar a transmissão!");
+                if (videoTrack != null)
+                {
+                    sender.ReplaceTrack(null);
+                    videoTrack.Dispose();
+                    videoTrack = null;
+                }
+            }
+            int ContarVideoTracks(RTCPeerConnection peer)
+            {
+                int total = 0;
+
+                foreach (var sender in peer.GetSenders())
+                {
+                    if (sender.Track != null && sender.Track.Kind == TrackKind.Video)
+                        total++;
+                }
+
+                return total;
+            }
+            internal void Mostrar_Sender_Config()
+            {
                 var parameters = sender.GetParameters();
+
                 foreach (var encoding in parameters.encodings)
                 {
-                    encoding.maxBitrate = WebRTC_Video_S_R.BitRate;
-                    encoding.maxFramerate = WebRTC_Video_S_R.FPS_Target;
-                    encoding.scaleResolutionDownBy = WebRTC_Video_S_R.scaleResolution;
+                    Debug.Log($"MaxBitrate: {encoding.maxBitrate}");
+                    Debug.Log($"MaxFramerate: {encoding.maxFramerate}");
+                    Debug.Log($"ScaleResolutionDownBy: {encoding.scaleResolutionDownBy}");
                 }
-                sender.SetParameters(parameters);
-
-                ThreadManager.ExecuteOnMainThread(() => instance.StartCoroutine(CriarOffer()));
             }
             #endregion
+
+            internal void EncerrarConexao()
+            {
+                if (peer == null)
+                    return;
+
+                peer.OnTrack = null;
+                peer.OnConnectionStateChange = null;
+                peer.OnIceCandidate = null;
+
+                // Encerra a conexão e seus fluxos de mídia.
+                peer.Close();
+                peer.Dispose();
+
+                peer = null;
+
+                if (sender != null)
+                {
+                    sender.Dispose();
+                    sender = null;
+                }
+
+                WebRTC_Video_S_R.instance.Parar();
+                ThreadManager.ExecuteOnMainThread(() => Avisos.instance.Mostrar_Aviso("Conexão encerrada."));
+            }
         }
     }
 }

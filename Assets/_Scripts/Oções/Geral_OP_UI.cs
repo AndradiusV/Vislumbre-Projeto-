@@ -25,7 +25,7 @@ public class Geral_OP_UI : MonoBehaviour
     }
     public void Set_Volume_Ping(float valor)
     {
-        SoundManager.volume = valor;
+        SoundManager.ping_volume = valor;
         Opcoes.SalvarConfiguracoes();
     }
     #endregion

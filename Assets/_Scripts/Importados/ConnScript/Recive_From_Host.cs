@@ -27,6 +27,8 @@ namespace GameServer
             Send_Client_Packet.Client_Saudação_Para_Servidor();
 
             Local_Client.instance.udp.Connect(((IPEndPoint)Local_Client.instance.tcp.socket.Client.LocalEndPoint).Port);
+
+            ThreadManager.ExecuteOnMainThread(() => Local_Client.instance.StartCoroutine(Local_Client.instance.webRTC.CriarOffer()));
         }
         /// <summary>
         /// Recebe o ping vindo do server feito por alguém. seja lá quem for

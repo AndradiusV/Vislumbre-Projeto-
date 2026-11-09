@@ -8,6 +8,7 @@ using UnityEngine.XR;
 
 public class TransparencyWindowController : MonoBehaviour
 {
+
 #if UNITY_STANDALONE_WIN
 
     // Importações da API do Windows (user32.dll e dwmapi.dll)
@@ -137,6 +138,10 @@ public class TransparencyWindowController : MonoBehaviour
     }
     void Update()
     {
+
+#if UNITY_EDITOR
+        return;
+#endif
         // 1. Verifica a sua condição (Ex: O mouse está dentro de uma área específica?)
         bool shouldBeClickable = FunçõesPrecalculadas.ismouseOverUI ||
             FunçõesPrecalculadas.isOverArea || forceClickable;
@@ -172,6 +177,10 @@ public class TransparencyWindowController : MonoBehaviour
     /// </summary>
     public void EnableTransparentFullscreen()
     {
+
+#if UNITY_EDITOR
+        return;
+#endif
         if (isTransparent) return;
 
         // 1. Salva as configurações originais da câmera
@@ -208,7 +217,10 @@ public class TransparencyWindowController : MonoBehaviour
     /// </summary>
     public void RestoreWindow()
     {
-            if (!isTransparent || Local_Client.instance == null) return;
+#if UNITY_EDITOR
+        return;
+#endif
+        if (!isTransparent || Local_Client.instance == null) return;
 
             // 1. Restaura a câmera
             mainCamera.clearFlags = originalClearFlags;
@@ -318,4 +330,4 @@ public class TransparencyWindowController : MonoBehaviour
         }
     }
 #endif
-}
+    }

@@ -270,7 +270,6 @@ public class Captura_De_Tela : MonoBehaviour
             Encoding = true;
             Desenho_Na_Tela.Escolheu_Janela(type != WindowTextureType.Desktop);
             WebRTC_Video_S_R.instance?.Start_Transmissão();
-            //H264.instance?.Start_Encoder();
         }
     }
 

@@ -279,52 +279,6 @@ public class EscolheJanela : MonoBehaviour
                     return windows_IDs[item].texture_PID;
                 }
             }
-            //    using (var enumerator = new MMDeviceEnumerator())
-            //    {
-            //        // Pega o dispositivo de saída de som padrão (Caixas de som / Fone)
-            //        var device = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
-            //        var sessionManager = device.AudioSessionManager;
-
-            //        // Atualiza a lista de sessões ativas do Windows
-            //        sessionManager.RefreshSessions();
-
-            //        int count = sessionManager.Sessions.Count;
-            //        if (count == 0)
-            //        {
-            //            UnityEngine.Debug.LogWarning("Nenhuma sessão de áudio encontrada no Windows.");
-            //            return ret;
-            //        }
-
-            //        bool foundSomething = false;
-
-            //        for (int i = 0; i < count; i++)
-            //        {
-            //            var session = sessionManager.Sessions[i];
-            //            uint pid = session.GetProcessID;
-
-            //            if (pid == 0) continue; // Ignora o PID 0 (Sons nativos do Sistema)
-
-            //            try
-            //            {
-            //                Process p = Process.GetProcessById((int)pid);
-
-            //                if (p.MainModule.ModuleName == nome)
-            //                {
-            //                    return (int)pid;
-            //                }
-            //            }
-            //            catch (ArgumentException)
-            //            {
-            //                // O processo já foi fechado, ignoramos
-            //            }
-            //        }
-
-            //        if (!foundSomething)
-            //        {
-            //            UnityEngine.Debug.LogWarning("Nenhum dos processos listados está emitindo som neste exato instante. Certifique-se de que a música não está pausada!");
-            //        }
-            //    }
-            //    //UnityEngine.Debug.Log("<color=cyan>--- FIM DA BUSCA ---</color>");
         }
         catch (Exception ex)
         {
@@ -337,7 +291,6 @@ public class EscolheJanela : MonoBehaviour
 internal class Complet_Screen_ID
 {
     public string titulo;
-    //public int audio_PID;
     public int texture_PID;
     public int window_ID;
 }

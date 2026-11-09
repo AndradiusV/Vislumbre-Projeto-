@@ -11,7 +11,7 @@ public class OP_Rapidas_Compartilhamento : MonoBehaviour
     [SerializeField] TMP_Dropdown tg_Pode_Desenho;
     public void Carregar_Perite_Desenho()
     {
-        tg_Desenho_Preferido.SetValueWithoutNotify((int)Desenho_Na_Tela.permi_Desenho);
+        tg_Pode_Desenho.SetValueWithoutNotify((int)Desenho_Na_Tela.permi_Desenho);
     }
     public void Alterar_Permi_Desenho(int valor)
     {

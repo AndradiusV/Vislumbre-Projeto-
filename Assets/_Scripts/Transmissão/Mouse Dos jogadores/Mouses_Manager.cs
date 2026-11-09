@@ -13,14 +13,23 @@ public class Mouses_Manager : MonoBehaviour
         //gameObject.SetActive(false);
     }
     [SerializeField] RawImage mouse_Pref;
-    Dictionary<int,(RawImage,Mouse_Type)> mouses;
+    Dictionary<int,(RawImage,Mouse_Type)> mouses = new();
     internal void Adicionar_Mouse(int client_ID)
     {
         if (mouses == null)
             mouses = new();
         RawImage mouse = Instantiate(mouse_Pref, transform);
         mouse.gameObject.SetActive(true);
-        mouses.Add(client_ID,(mouse,Mouse_Type.nenhum));
+        if (mouses.ContainsKey(client_ID))
+        {
+            Remover_Mouse(client_ID);
+            if (mouses.ContainsKey(client_ID))
+                mouses[client_ID] = (mouse, Mouse_Type.nenhum);
+            else
+                mouses.Add(client_ID, (mouse, Mouse_Type.nenhum));
+        }
+        else
+            mouses.Add(client_ID,(mouse,Mouse_Type.nenhum));
     }
     public void Remover_Mouse(int client_ID)
     {
@@ -31,26 +40,34 @@ public class Mouses_Manager : MonoBehaviour
             Destroy(mouses[client_ID].Item1.gameObject);
         mouses.Remove(client_ID);
     }
+    public void Limpar_Mouses()
+    {
+        foreach (var item in mouses)
+        {
+            Destroy(item.Value.Item1.gameObject);
+        }
+        mouses.Clear();
+    }
     internal void Mover_Mouse(int client_ID, Mouse_Type tipo,Vector2 nova_Posicao,Color cor)
     {
-        if (!mouses.ContainsKey(client_ID))
+        if (!mouses.ContainsKey(client_ID) || mouses[client_ID].Item1 == null)
             return;
 
         RawImage ri = mouses[client_ID].Item1;
 
+
+        float x_dif = Mathf.Sign(nova_Posicao.x - ri.transform.position.x);
+
         ri.transform.position = nova_Posicao;
-
-        float x_dif = Mathf.Sign(nova_Posicao.x - mouses[client_ID].Item1.transform.position.x);
-
-            if (tipo == Mouse_Type.nenhum)
+        if (tipo == Mouse_Type.nenhum)
                 x_dif = 1;
 
-        if (Mathf.Abs(nova_Posicao.x - mouses[client_ID].Item1.transform.position.x) >= 1)
-        {
-            ri.transform.localScale = new Vector3(x_dif,
-                ri.transform.lossyScale.y,
-                ri.transform.lossyScale.z);
-        }
+        //if (Mathf.Abs(x_dif) >= .1f)
+        //{
+        //    ri.transform.localScale = new Vector3(x_dif,
+        //        ri.transform.lossyScale.y,
+        //        ri.transform.lossyScale.z);
+        //}
 
         ri.color = cor;
         if (mouses[client_ID].Item2 != tipo)

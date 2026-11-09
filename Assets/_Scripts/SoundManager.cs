@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioSource m_AudioSource;
-    public static float volume;
+    public static float ping_volume;
     [SerializeField] AudioSource m_AudioSource_Pref;
     List<AudioSource> audios = new List<AudioSource>();
     public static SoundManager instance;
@@ -35,7 +35,7 @@ public class SoundManager : MonoBehaviour
     public void Tocar_Som(AudioClip som)
     {
         AudioSource aud = Instantiate(m_AudioSource_Pref);
-        aud.volume = volume;
+        aud.volume = ping_volume;
         aud.clip = som;
         audios.Add(aud);
 
@@ -46,6 +46,7 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource aud = Instantiate(m_AudioSource_Pref);
         aud.clip = pings[Mathf.Clamp(ping_id,0,pings.Length-1)];
+        aud.volume = ping_volume;
         audios.Add(aud);
 
         aud.Play();
@@ -55,6 +56,7 @@ public class SoundManager : MonoBehaviour
         int ret = Random.Range(0, pings.Length);
         AudioSource aud = Instantiate(m_AudioSource_Pref);
         aud.clip = pings[ret];
+        aud.volume = ping_volume;
         audios.Add(aud);
 
         aud.Play();

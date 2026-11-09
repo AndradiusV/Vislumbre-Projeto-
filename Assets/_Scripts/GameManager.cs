@@ -8,13 +8,17 @@ using uWindowCapture;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool Primeira_Vez = true;
+    [SerializeField]
+    Primeira_Vez primeira_vez_Controler;
     public static bool Pause;
     private void Awake()
     {
-        //Opcoes.SalvarConfiguracoes();
         UwcManager.instance.name = "uWindowCapture";
         Application.targetFrameRate = 60;
         Opcoes.CarregarConfiguracoes();
+        primeira_vez_Controler.Verificar_Primeira_Abertura();
+        StartCoroutine(Updater_Call.VerificarVersao());
     }
     private void Start()
     {

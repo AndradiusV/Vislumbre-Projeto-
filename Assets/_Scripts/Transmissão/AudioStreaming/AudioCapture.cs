@@ -14,7 +14,33 @@ public class AudioCapture : MonoBehaviour
 
     [Header("Configurações de Áudio")]
     [SerializeField] private int targetPid = 25380;
-    
+    internal void Validar()
+    {
+        string exePath = "";
+#if UNITY_EDITOR
+        exePath = @"C:\Users\enrib\OneDrive\Desktop\AudioCatcher_Old.Net\AudioCatcher\bin\Release\AudioCatcher.exe";
+#else
+        exePath = Path.Combine(Application.dataPath, @"AudioCapture\net9.0\AudioCatcher.exe");
+#endif
+
+        try
+        {
+            var startInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = exePath,
+                UseShellExecute = true,
+                CreateNoWindow = false
+            };
+
+            captureProcess = System.Diagnostics.Process.Start(startInfo);
+        }
+        catch (Exception ex)
+        {
+            Avisos.instance.Adicionar_Ao_Log("Erro ao iniciar o processo de áudio: " + ex.Message);
+            Avisos.instance.Salvar_Log();
+        }
+    }
+
     internal void Iniciar_Captura(int PID, bool include)
     {
         string exePath = "";

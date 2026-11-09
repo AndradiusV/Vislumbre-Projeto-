@@ -76,7 +76,7 @@ public class Transmissao_OP_UI : MonoBehaviour
     [SerializeField] TMP_Dropdown dp_Resolução;
     public void Carregar_Resolução()
     {
-        switch (WebRTC_Video_S_R.scaleResolution)
+        switch (WebRTC_Video_S_R.scaleResolutionDownBy)
         {
             case 1.0:
                 dp_Resolução.SetValueWithoutNotify(0);
@@ -100,23 +100,31 @@ public class Transmissao_OP_UI : MonoBehaviour
         switch (valor)
         {
             case 0:
-                WebRTC_Video_S_R.scaleResolution = 1.0;
+                WebRTC_Video_S_R.scaleResolutionDownBy = 1.0;
                 break;
             case 1:
-                WebRTC_Video_S_R.scaleResolution = 1.5;
+                WebRTC_Video_S_R.scaleResolutionDownBy = 1.5;
                 break;
             case 2:
-                WebRTC_Video_S_R.scaleResolution = 2.25;
+                WebRTC_Video_S_R.scaleResolutionDownBy = 2.25;
                 break;
             case 3:
-                WebRTC_Video_S_R.scaleResolution = 3.0;
+                WebRTC_Video_S_R.scaleResolutionDownBy = 3.0;
                 break;
             default:
                 break;
         }
         _Resolução_TXT.text = $"Qualidade Alvo: ";
-        Opcoes.SalvarConfiguracoes();
         WebRTC_Video_S_R.Atualizar_Transmissao();
+        Opcoes.SalvarConfiguracoes();
+    }
+    #endregion
+
+    #region Seletor de Audio Excluder
+    [SerializeField] Seletor_Exclude_Program_Audio Seletor_De_Prog_Ignorar;
+    public void Abrir_Seletor()
+    {
+        Seletor_De_Prog_Ignorar.Abrir();
     }
     #endregion
 }

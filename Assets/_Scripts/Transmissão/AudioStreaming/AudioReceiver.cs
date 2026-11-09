@@ -114,22 +114,22 @@ public class AudioReceiver : MonoBehaviour
     }
     internal void Parar()
     {
+        if (!Ativado)
+            return;
+
         Ativado = false;
         ringBuffer = null;
-        try
-        {
-            audioSource.Stop();
+        try{ audioSource.Stop(); }catch{ }
 
+        try{
             if (decoder != null)
                 decoder.Dispose();
+        } catch { }
 
+        try{
             pcmDecodeBuffer = null;
             isBuffering = false;
-        }
-        catch
-        {
-
-        }
+        } catch { }
     }
 
     private void OnDestroy()

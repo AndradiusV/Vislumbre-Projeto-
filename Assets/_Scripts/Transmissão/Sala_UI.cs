@@ -1,9 +1,11 @@
 using GameServer;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class Sala_UI : MonoBehaviour
 {
@@ -15,21 +17,32 @@ public class Sala_UI : MonoBehaviour
         Compartilhando_UI.instance = comp_OB;
     }
     [SerializeField] TextMeshProUGUI ip_Port_TXT;
+    [SerializeField] TextMeshProUGUI ip_Port_Transmitindo_TXT;
+    [SerializeField] TextMeshProUGUI ip_Port_Assistindo_TXT;
     public void Definir_Info_Sala()
     {
-        if (Server.Online)
-            ip_Port_TXT.text = Menu_Inicial_UI.instance.Meu_ip_Area.text + ":" + Server.Port;
-        else
-            ip_Port_TXT.text = Local_Client.instance.ip + ":" + Local_Client.instance.port;
+        ip_Port_TXT.text = Local_Client.IP_PORT;
+        ip_Port_Transmitindo_TXT.text = Local_Client.IP_PORT;
+        ip_Port_Assistindo_TXT.text = Local_Client.IP_PORT;
     }
     [SerializeField] TextMeshProUGUI _quants_Jogadores_TXT;
     public void Atualizar_Integrantes_Quant(int quant)
     {
         _quants_Jogadores_TXT.text = quant.ToString() + "Online";
     }
-    public void Copiar_Sala_IP()
+    /// <summary>
+    /// Token que adiminstra o feedback ao copiar o ip:port da sala
+    /// </summary>
+    TimerToken _FB_Copiado_Token;
+    public void Copiar_Sala_IP(TextMeshProUGUI texto_Usado)
     {
-        GUIUtility.systemCopyBuffer = ip_Port_TXT.text;
+        string ip_port = Local_Client.IP_PORT;
+        GUIUtility.systemCopyBuffer = ip_port;
+
+        if (_FB_Copiado_Token != null)
+            _FB_Copiado_Token.Dispose();
+
+        _FB_Copiado_Token = Timer.FeedBack_De_Texto(ip_port, "IP:PORT Copiado!", texto_Usado, 1, 3, Color.green);
     }
     [SerializeField] GameObject Transmite_Aba;
     [SerializeField] GameObject Escolha_De_Janela_Aba;
@@ -93,6 +106,8 @@ public class Sala_UI : MonoBehaviour
         Ver_Aba.SetActive(true);
         Transmite_Aba.SetActive(false);
         TransparencyWindowController.instance.RestoreWindow();
+
+        TransparencyWindowController.instance.Atualizar_Pined_Mode();
     }
     #endregion
     public void Abir_Espera()
@@ -114,24 +129,33 @@ public class Sala_UI : MonoBehaviour
 
         Audio_Trans_Manager.instance.Parar_Capture();
         Audio_Trans_Manager.instance.Parar_Reciver();
+
+        TransparencyWindowController.instance.Atualizar_Pined_Mode();
     }
     public void Desconectar()
     {
-        //Desconecta da sala
-        if (Local_Client.instance.transmitindo)
-            Local_Client.instance.Pedir_Para_Transmitir_Tela(false);
-        if (Local_Client.instance.assistindo)
-            Local_Client.instance.pedir_para_Ver_Tela(false);
-
-        if (Server.Online)
+        try
         {
-            Server.Fechar_Servidor();
+            //Desconecta da sala
+
+            if (Server.Online)
+            {
+                Server.Fechar_Servidor();
+            }
+            else
+            {
+                if (Local_Client.instance.transmitindo)
+                    Local_Client.instance.Pedir_Para_Transmitir_Tela(false);
+                if (Local_Client.instance.assistindo)
+                    Local_Client.instance.pedir_para_Ver_Tela(false);
+                Local_Client.instance.Disconnect();
+            }
+
+            Menu_Inicial_UI.instance.abrir_Menu_Inicial();
         }
-        else
-            Local_Client.instance.Disconnect();
-
-        WebRTC_Video_S_R.instance.Parar();
-
-        Menu_Inicial_UI.instance.abrir_Menu_Inicial();
+        catch (System.Exception e)
+        {
+            Debug.LogError("Erro ao desconectar: " + e.Message);
+        }
     }
 }

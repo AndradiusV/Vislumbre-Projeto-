@@ -84,35 +84,26 @@ internal static class Recived_From_Clients
         else if (estava_Transmitindo && !Server.clients[_fromClient].transmitindo)
         {
             //Avisa para todos os que estão assistindo que eles não podem mais assistir
-            Server.Cliente_Escolheu_Tela = false;
             Server.Cliente_Transmitindo = -2;
+            Server.Cliente_Escolheu_Tela = false;
         }
         Send_Host_Packet.Responde_Permissão_De_Transmissão(_fromClient, pode_Transmitir);
     }
     internal static void Pedido_Para_Ver_Tela(int _fromClient, Packet p)
     {
+        //Pega a intenção do  cliente, se ele quer ver ou quer parar de ver a stream
         bool intenção = p.ReadBool();
 
+        //Se alguém estiver transmitindo ele poderá. No caso a tela de transmissão já deve ter sido escolhida.
         bool pode_Assistir = Server.Cliente_Escolheu_Tela;
-        //if (Local_Client.instance.transmitindo)
-        //    pode_Assistir = Local_Client.instance.transmitindo;
-        //else
-        //    foreach (var item in Server.clients)
-        //    {
-        //        if (item.Value.transmitindo)
-        //        {
-        //            pode_Assistir = true;
-        //            break;
-        //        }
-        //    }
         pode_Assistir &= intenção;
 
         Server.clients[_fromClient].assistindo = pode_Assistir;
 
-        Avisos.instance.Mostrar_Aviso($"{_fromClient} pediu, e ele {pode_Assistir} assistir");
-
+        Avisos.instance.Mostrar_Aviso($"O cliente de id {_fromClient} pediu para assistir, ele {(pode_Assistir? "pode":"não pode")} assistir");
         if (pode_Assistir)
         {
+            //Caso ele possa assistir, e vá. Ativa a transmissão/retransmissão para ele além de enviar a informação do mouse para quem está transmitindo
             if (Local_Client.instance.transmitindo)
             {
                 Mouses_Manager.instance.Adicionar_Mouse(_fromClient);
@@ -174,6 +165,9 @@ internal static class Recived_From_Clients
     /// <param name="p"></param>
     internal static void Mouse(int _fromClient, Packet p)
     {
+        if (Server.Cliente_Transmitindo == -2)
+            return;
+
         BrushType tipo = (BrushType)p.ReadInt();
         Permissão_De_Desenho tipo_Desenho = (Permissão_De_Desenho)p.ReadInt();
         Mouse_Type mouse_Type= (Mouse_Type)p.ReadInt();

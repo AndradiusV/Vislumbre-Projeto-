@@ -10,7 +10,7 @@ public class Exclude_Program_Audio_Item : MonoBehaviour
     public string nome_Program;
     [SerializeField] TextMeshProUGUI _nome_Program_TXT;
     public Texture2D icon_Program;
-    [SerializeField] Image _icon;
+    public Image _icon;
     public void Selecionar()
     {
         Audio_Trans_Manager.prog_Audi_Excluido = nome_Program;

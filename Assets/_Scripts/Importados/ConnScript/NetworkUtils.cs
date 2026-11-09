@@ -1,9 +1,6 @@
-using System.Net;
-using System;
+using System.Linq;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 public static class NetworkUtils
 {
@@ -18,6 +15,14 @@ public static class NetworkUtils
         string ip = await client.GetStringAsync("https://api.ipify.org");
 
         return ip.Trim();
+    }
+    public static bool IS_IP_PORT_Valid(string ip_Port)
+    {
+        return ip_Port.Contains(":") && !ip_Port.Any(char.IsLetter) && ip_Port.Count(c => c == '.') == 3;
+    }
+    public static bool IS_IP_Valid(string ip)
+    {
+        return !(ip.Contains(":") || ip.Any(char.IsLetter) || ip.Count(c => c == '.') != 3);
     }
 
     public static async Task<string> ObterIPv6PublicoAsync()

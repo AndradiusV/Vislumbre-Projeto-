@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
@@ -30,13 +31,19 @@ public class Timer : MonoBehaviour
         for (int i = 0; i < tokens.Count; i++)
             if (tokens[i].Tick())
             {
-                tokens[i].Dispose();
+                if (!tokens[i].IsDispose)
+                    tokens[i].Dispose();
+                else
+                    tokens.RemoveAt(i);
                 i--;
             }
         for (int i = 0; i < tokens_Continuos.Count; i++)
             if (tokens_Continuos[i].Tick())
             {
-                tokens_Continuos[i].Dispose();
+                if(!tokens_Continuos[i].IsDispose)
+                    tokens_Continuos[i].Dispose();
+                else
+                    tokens_Continuos.RemoveAt(i);
                 i--;
             }
 
@@ -44,13 +51,19 @@ public class Timer : MonoBehaviour
         for (int i = 0; i < tokens_Descartavel.Count; i++)
             if (tokens_Descartavel[i].Tick())
             {
-                tokens_Descartavel[i].Dispose();
+                if(!tokens_Descartavel[i].IsDispose)
+                    tokens_Descartavel[i].Dispose();
+                else
+                    tokens_Descartavel.RemoveAt(i);
                 i--;
             }
         for (int i = 0; i < tokens_Continuos_Descartavel.Count; i++)
             if (tokens_Continuos_Descartavel[i].Tick())
             {
-                tokens_Continuos_Descartavel[i].Dispose();
+                if(!tokens_Continuos_Descartavel[i].IsDispose)
+                    tokens_Continuos_Descartavel[i].Dispose();
+                else
+                    tokens_Continuos_Descartavel.RemoveAt(i);
                 i--;
             }
     }
@@ -80,11 +93,11 @@ public class Timer : MonoBehaviour
     /// Cria um token para ativar uma ação depois de um tempo t determinado, e que fica execultando uma função a cada tick
     /// </summary>
     /// <param name="t">Tempo em segundos</param>
-    /// <param name="ac">ação definida</param>
+    /// <param name="ac">ação feita quando o token é concluido.</param>
     /// <param name="acc">ação continua definida. é uma achão q erepetira a cada tick</param>
-    /// <param name="dispodeac">ação que limpa todas as referencias do token</param>
+    /// <param name="dispodeac">ação para quando o token é finalizado.</param>
     /// <returns></returns>
-    internal static TimerToken AdicionarToken(float t, Action ac, Action<float> acc, Action dispodeac, bool descartavel)
+    internal static TimerToken AdicionarToken(float t, Action ac, Action<float> acc, Action dispodeac, bool descartavel = false)
     {
         TimerTokenContinuo token = null;
         if (!descartavel)
@@ -99,6 +112,32 @@ public class Timer : MonoBehaviour
         }
         return token;
     }
+
+    #region Tokens Prontos
+    internal static TimerToken FeedBack_De_Texto(string texto_inicial,string texto,TextMeshProUGUI _feedBack_Text, float duration_Base, float color_chance_times, Color B)
+    {
+        Color A = _feedBack_Text.color;
+        _feedBack_Text.text = texto;
+
+        float dutarion = duration_Base + Mathf.Clamp((texto.Length / 36f), 0, 3f);
+
+        TimerToken ret = AdicionarToken(dutarion, () =>
+        {
+
+        }, t =>
+        {
+            float c_t = t / dutarion;
+            c_t *= color_chance_times * Mathf.PI;
+            _feedBack_Text.color = Color.Lerp(A, B, Mathf.Abs(Mathf.Sin(c_t)));
+        }, () =>
+        {
+            _feedBack_Text.text = texto_inicial;
+            _feedBack_Text.color = A;
+        }
+        , true);
+        return ret;
+    }
+    #endregion
 
     internal static void Limpar()
     {

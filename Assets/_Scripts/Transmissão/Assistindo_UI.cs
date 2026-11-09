@@ -39,6 +39,7 @@ public class Assistindo_UI : MonoBehaviour
         {
             color_Selected_IMG.color = Desenho_Na_Tela.brushColor;
             _is_Pined_IMG.sprite = TransparencyWindowController.is_Pined ? _pined_On : _pined_Off;
+            TransparencyWindowController.instance.Atualizar_Pined_Mode();
         }
         IG.SetActive(ativo);
         IG_Recolhido.SetActive(!ativo);
@@ -57,9 +58,9 @@ public class Assistindo_UI : MonoBehaviour
         aba_Lapis_Borracha_OP.SetActive(true);
         Fechar_OP_CR();
     }
-    public void Começar_Balde()
+    public void Começar_ContaGotas()
     {
-        Desenho_Na_Tela.instance.Iniciar_Desenho(BrushType.balde);
+        Desenho_Na_Tela.instance.Iniciar_Desenho(BrushType.conta_Gotas);
         aba_Lapis_Borracha_OP.SetActive(false);
         Fechar_OP_CR();
     }
@@ -80,6 +81,7 @@ public class Assistindo_UI : MonoBehaviour
     {
         TransparencyWindowController.is_Pined = ativo;
         _is_Pined_IMG.sprite = TransparencyWindowController.is_Pined ? _pined_On : _pined_Off;
+        Opcoes.SalvarConfiguracoes();
     }
     #endregion
     #region Op
@@ -103,8 +105,11 @@ public class Assistindo_UI : MonoBehaviour
     #endregion
     public void Sair_Transmissão()
     {
-        aba_Lapis_Borracha_OP.SetActive(false);
-        Fechar_OP_CR();
+        Alterar_Info_Geral(false);
         Sala_UI.instance.Abir_Espera();
+    }
+    private void OnEnable()
+    {
+        Alterar_Info_Geral(false);
     }
 }

@@ -80,7 +80,6 @@ public class CA_Vertical : CA_Content
             RefRect.pivot = new Vector2(.5f, 1);
         }
         y_size = (activeChildren * RefRect.rect.height * verticalAmount)
-
             + (Mathf.Clamp(activeChildren - 1, 0, activeChildren) * RefRect.rect.height * spaceAmount)
             + (RefRect.rect.height * BorderAmoun * 2);
         myrect.sizeDelta = new Vector2(0, y_size);
@@ -104,6 +103,10 @@ public class CA_Vertical : CA_Content
         {
             B_y = activeChildren * verticalAmount * RefRect.rect.height / 2 + (RefRect.rect.height * BorderAmoun)
                 + Mathf.Clamp(activeChildren - 1, 0, activeChildren) * spaceAmount * RefRect.rect.height / 2;
+            if (FunçõesPrecalculadas.Canvas_Ajust_Size != Vector2.zero)
+            {
+                B_y *= FunçõesPrecalculadas.Canvas_Ajust_Size.y;
+            }
         }
         if (UseNormalChild)
         {
@@ -133,6 +136,10 @@ public class CA_Vertical : CA_Content
 
                     float y = (i * (spaceAmount + verticalAmount)) * RefRect.rect.height + (RefRect.rect.height * BorderAmoun);
 
+                    if (FunçõesPrecalculadas.Canvas_Ajust_Size != Vector2.zero)
+                    {
+                        y *= FunçõesPrecalculadas.Canvas_Ajust_Size.y;
+                    }
                     if (at == AlingType.A)
                         rc.position = new Vector2(0, y) + (Vector2)myrect.position;
                     else if (at == AlingType.B)
@@ -171,6 +178,10 @@ public class CA_Vertical : CA_Content
 
                 float y = (i * (spaceAmount + verticalAmount)) * RefRect.rect.height + (RefRect.rect.height * BorderAmoun);
 
+                if (FunçõesPrecalculadas.Canvas_Ajust_Size != Vector2.zero)
+                {
+                    y *= FunçõesPrecalculadas.Canvas_Ajust_Size.y;
+                }
                 if (at == AlingType.A)
                     filhos[i].rc.position = new Vector2(0, y) + (Vector2)myrect.position;
                 else if (at == AlingType.B)
