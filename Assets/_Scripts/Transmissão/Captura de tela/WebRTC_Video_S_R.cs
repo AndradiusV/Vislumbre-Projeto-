@@ -39,9 +39,9 @@ public class WebRTC_Video_S_R : MonoBehaviour
         }
         Atualizar_Transmissao();
     }
-    internal static uint? FPS_Target = 15;
-    internal static ulong? BitRate = 2_000_000;
-    internal static double? scaleResolutionDownBy = 2.0;
+    internal static uint? FPS_Target = 30;
+    internal static ulong? BitRate = 4_000_000;
+    internal static double? scaleResolutionDownBy = 1.0;
     internal static void Atualizar_Transmissao()
     {
         if(instance != null)

@@ -35651,7 +35651,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 808779842}
         m_TargetAssemblyTypeName: Menu_Inicial_UI, Assembly-CSharp
-        m_MethodName: Definir_Proprio_IP
+        m_MethodName: Definir_Proprio_IP_TMP
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

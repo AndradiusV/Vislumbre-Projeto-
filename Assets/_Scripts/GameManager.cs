@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Avisos.instance.Salvar_Log();
-        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    Avisos.instance.Salvar_Log();
+        //}
         //Avisos.instance.Mostrar_Aviso_Fixo(Input.mousePosition.ToString());
     }
 }

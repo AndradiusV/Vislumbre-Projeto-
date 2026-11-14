@@ -118,10 +118,14 @@ internal static class Opcoes
         }
         else
         {
+            WebRTC_Video_S_R.BitRate = 4_000_000;
+            WebRTC_Video_S_R.FPS_Target = 30;
+            WebRTC_Video_S_R.scaleResolutionDownBy = 1;
             AudioListener.volume = .75f;
             SoundManager.ping_volume = .5f;
             Avisos.avisos = false;
-            Desenho_Na_Tela.desenho_tipo_Preferido = Permissão_De_Desenho.todos;
+            Desenho_Na_Tela.desenho_tipo_Preferido = Permissão_De_Desenho.fixo;
+            Desenho_Na_Tela.permi_Desenho = Permissão_De_Desenho.todos;
             SalvarConfiguracoes();
             Debug.Log("Arquivo de save não encontrado. O jogo usará as configurações padrão.");
         }

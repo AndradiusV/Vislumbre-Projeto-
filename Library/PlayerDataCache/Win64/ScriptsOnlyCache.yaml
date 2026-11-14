@@ -54,21 +54,13 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
-    - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
-    Unity.2D.Tilemap.Extras.Editor.dll:
-    - UnityEditor.Tilemaps.GameObjectBrush
-    - UnityEditor.Tilemaps.GroupBrush
-    - UnityEditor.Tilemaps.LineBrush
-    - UnityEditor.Tilemaps.RandomBrush
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
@@ -368,6 +360,9 @@ ScriptsOnlyBuild:
     fullTypeName: Menu_Inicial_UI
     methodName: Abrir_Canal_Youtube
   - assembly: Assembly-CSharp
+    fullTypeName: Menu_Inicial_UI
+    methodName: Definir_Proprio_IP_TMP
+  - assembly: Assembly-CSharp
     fullTypeName: Exclude_Program_Audio_Item
     methodName: Selecionar
   - assembly: Assembly-CSharp
@@ -566,17 +561,17 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3140}
+      Script: {instanceID: 3128}
     - Class: 114
-      Script: {instanceID: 3426}
+      Script: {instanceID: 3414}
     - Class: 114
-      Script: {instanceID: 4682}
+      Script: {instanceID: 4674}
     - Class: 114
-      Script: {instanceID: 6656}
+      Script: {instanceID: 6652}
     - Class: 114
-      Script: {instanceID: 7436}
+      Script: {instanceID: 7432}
     - Class: 114
-      Script: {instanceID: 7690}
+      Script: {instanceID: 7688}
     - Class: 114
       Script: {instanceID: 8166}
     - Class: 115
@@ -629,105 +624,105 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1604}
+      Script: {instanceID: 1646}
     - Class: 114
-      Script: {instanceID: 1606}
+      Script: {instanceID: 1648}
     - Class: 114
-      Script: {instanceID: 1610}
+      Script: {instanceID: 1716}
     - Class: 114
-      Script: {instanceID: 1658}
+      Script: {instanceID: 1724}
     - Class: 114
-      Script: {instanceID: 1660}
+      Script: {instanceID: 1864}
     - Class: 114
-      Script: {instanceID: 1728}
+      Script: {instanceID: 2512}
     - Class: 114
-      Script: {instanceID: 1736}
+      Script: {instanceID: 2530}
     - Class: 114
-      Script: {instanceID: 1876}
+      Script: {instanceID: 2932}
     - Class: 114
-      Script: {instanceID: 2524}
+      Script: {instanceID: 3128}
     - Class: 114
-      Script: {instanceID: 2542}
+      Script: {instanceID: 3136}
     - Class: 114
-      Script: {instanceID: 2944}
+      Script: {instanceID: 3198}
     - Class: 114
-      Script: {instanceID: 3140}
+      Script: {instanceID: 3414}
     - Class: 114
-      Script: {instanceID: 3148}
+      Script: {instanceID: 3446}
     - Class: 114
-      Script: {instanceID: 3210}
+      Script: {instanceID: 3652}
     - Class: 114
-      Script: {instanceID: 3426}
+      Script: {instanceID: 3910}
     - Class: 114
-      Script: {instanceID: 3458}
+      Script: {instanceID: 4088}
     - Class: 114
-      Script: {instanceID: 3664}
+      Script: {instanceID: 4250}
     - Class: 114
-      Script: {instanceID: 4096}
+      Script: {instanceID: 4742}
     - Class: 114
-      Script: {instanceID: 4258}
+      Script: {instanceID: 4916}
     - Class: 114
-      Script: {instanceID: 4750}
+      Script: {instanceID: 4994}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 5014}
     - Class: 114
-      Script: {instanceID: 5002}
+      Script: {instanceID: 5222}
     - Class: 114
-      Script: {instanceID: 5022}
+      Script: {instanceID: 5248}
     - Class: 114
-      Script: {instanceID: 5230}
+      Script: {instanceID: 5260}
     - Class: 114
-      Script: {instanceID: 5256}
+      Script: {instanceID: 5432}
     - Class: 114
-      Script: {instanceID: 5268}
+      Script: {instanceID: 5602}
     - Class: 114
-      Script: {instanceID: 5440}
+      Script: {instanceID: 5940}
     - Class: 114
-      Script: {instanceID: 5610}
+      Script: {instanceID: 6098}
     - Class: 114
-      Script: {instanceID: 5948}
+      Script: {instanceID: 6158}
     - Class: 114
-      Script: {instanceID: 6106}
+      Script: {instanceID: 6242}
     - Class: 114
-      Script: {instanceID: 6164}
+      Script: {instanceID: 6272}
     - Class: 114
-      Script: {instanceID: 6248}
+      Script: {instanceID: 6294}
     - Class: 114
-      Script: {instanceID: 6278}
+      Script: {instanceID: 6346}
     - Class: 114
-      Script: {instanceID: 6300}
+      Script: {instanceID: 6364}
     - Class: 114
-      Script: {instanceID: 6352}
+      Script: {instanceID: 6370}
     - Class: 114
-      Script: {instanceID: 6374}
+      Script: {instanceID: 6460}
     - Class: 114
-      Script: {instanceID: 6464}
+      Script: {instanceID: 6548}
     - Class: 114
-      Script: {instanceID: 6552}
+      Script: {instanceID: 6652}
     - Class: 114
-      Script: {instanceID: 6656}
+      Script: {instanceID: 7108}
     - Class: 114
-      Script: {instanceID: 7112}
+      Script: {instanceID: 7154}
     - Class: 114
-      Script: {instanceID: 7158}
+      Script: {instanceID: 7180}
     - Class: 114
-      Script: {instanceID: 7184}
+      Script: {instanceID: 7260}
     - Class: 114
-      Script: {instanceID: 7264}
+      Script: {instanceID: 7328}
     - Class: 114
-      Script: {instanceID: 7332}
+      Script: {instanceID: 7432}
     - Class: 114
-      Script: {instanceID: 7436}
+      Script: {instanceID: 7448}
     - Class: 114
-      Script: {instanceID: 7452}
+      Script: {instanceID: 7642}
     - Class: 114
-      Script: {instanceID: 7644}
+      Script: {instanceID: 7672}
     - Class: 114
-      Script: {instanceID: 7674}
+      Script: {instanceID: 7688}
     - Class: 114
-      Script: {instanceID: 7690}
+      Script: {instanceID: 7742}
     - Class: 114
-      Script: {instanceID: 7744}
+      Script: {instanceID: 7824}
     - Class: 114
       Script: {instanceID: 7882}
     - Class: 114
@@ -779,36 +774,6 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
-  - hash:
-      serializedVersion: 2
-      Hash: b08efe6f7dec6f500cd138850261f6e7
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CA_Vertical_Editor
-  - hash:
-      serializedVersion: 2
-      Hash: c79bdf01de990f642866ed11646ad2ff
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CA_Horizontal_Editor
-  - hash:
-      serializedVersion: 2
-      Hash: 4563969d9eb005a36bcfd69fe5e53b91
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: TransparencyWindowController
-  - hash:
-      serializedVersion: 2
-      Hash: 611181ddef309a00a7b189e540bf741f
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: AudioReceiver
-  - hash:
-      serializedVersion: 2
-      Hash: fb35a5a64a264eb009f078892075dfb1
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Captura_De_Tela
   - hash:
       serializedVersion: 2
       Hash: 915204dac8acad99f076d6e72ada0a0f
@@ -1141,6 +1106,12 @@ ScriptsOnlyBuild:
     className: UwcWindowList
   - hash:
       serializedVersion: 2
+      Hash: 4563969d9eb005a36bcfd69fe5e53b91
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TransparencyWindowController
+  - hash:
+      serializedVersion: 2
       Hash: d90629714fa6b0145fcaffc87f5c6559
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1471,6 +1442,12 @@ ScriptsOnlyBuild:
     className: SoundManager
   - hash:
       serializedVersion: 2
+      Hash: b08efe6f7dec6f500cd138850261f6e7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CA_Vertical_Editor
+  - hash:
+      serializedVersion: 2
       Hash: e402a382f213255c22bda9254dd831b3
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1541,6 +1518,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Seletor_Exclude_Program_Audio
+  - hash:
+      serializedVersion: 2
+      Hash: fb35a5a64a264eb009f078892075dfb1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Captura_De_Tela
   - hash:
       serializedVersion: 2
       Hash: b44fdacd1d5730ce0000dcd209c5c811
@@ -1705,6 +1688,12 @@ ScriptsOnlyBuild:
     className: Preferencias_OP_UI
   - hash:
       serializedVersion: 2
+      Hash: c79bdf01de990f642866ed11646ad2ff
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CA_Horizontal_Editor
+  - hash:
+      serializedVersion: 2
       Hash: ef38c1407dba8c1f5d69f5db61a694fe
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1745,6 +1734,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: WebRTCHost
+  - hash:
+      serializedVersion: 2
+      Hash: 611181ddef309a00a7b189e540bf741f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AudioReceiver
   - hash:
       serializedVersion: 2
       Hash: 33796dd838396dfc03dc136fffe41857
