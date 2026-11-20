@@ -1,15 +1,14 @@
 # Vislumbre (Projeto)
 Este projeto foi feito na Unity 2022.3.62f3. Você tem permissão para fazer o que quiser com este projeto.
 
-====================================================
-                   ATENÇÂO!
-====================================================
+= ATENÇÂO! 
+=
 
 Se você estiver no windows 11, o projeto irá funcionar normalmente, caso contrário você precisa do .Net 9.0+ para rodar o AudioCatcher.
 
-====================================================
+=
                    ATENÇÂO!
-====================================================
+=
 
 Você é livre para fazer o que bem entender com a estrutura do projeto, use como se fosse seu mas saiba que eu ficaria feliz de ser creditado.
 Fique atento que as artes não foram feitas por mim, para uso delas é necessário a permissão de L. Fallen Yokai B.A. 
