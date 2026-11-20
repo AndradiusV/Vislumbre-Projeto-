@@ -8,13 +8,14 @@ ATENÇÂO!
 Se você estiver no windows 11, o projeto irá funcionar normalmente, caso contrário você precisa do .Net 9.0+ para rodar o AudioCatcher.
 
 =
-ATENÇÂO!
+Licença!
 =
 
 Você é livre para fazer o que bem entender com a estrutura do projeto, use como se fosse seu mas saiba que eu ficaria feliz de ser creditado.
 Fique atento que as artes não foram feitas por mim, para uso delas é necessário a permissão de L. Fallen Yokai B.A. 
 
 Sobre o projeto:
+=
 Está tudo uma bagunça, MEU DEUS. foi a primeira vez que eu fiz algo do tipo  então muitas partes não estão comentadas ou estão com comentários extras.
 Muita coisa mudou durante a produção então a própria estrutura está  a nível de "primeiro projeto do tipo", qualquer dúvida entre em contato que eu irei te ajudar ao máximo!
 
